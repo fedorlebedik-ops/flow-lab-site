@@ -1,0 +1,1021 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flow Lab (Флоу Лаб) — лаборатория автоматизации Revit для архитектурных бюро</title>
+<meta name="description" content="Flow Lab (Флоу Лаб) — лаборатория автоматизации Revit для архитектурных бюро: изучаем процесс команды, настраиваем кнопки под EIR девелопера и замеряем время до и после.">
+<link rel="canonical" href="https://flow-lab.pro/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Flow Lab">
+<meta property="og:title" content="Flow Lab (Флоу Лаб) — лаборатория автоматизации Revit">
+<meta property="og:description" content="Рабочая документация в Revit на кнопках под EIR девелопера. Изучаем процесс команды, настраиваем кнопки под ваши правила, замеряем время до и после.">
+<meta property="og:url" content="https://flow-lab.pro/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&amp;display=swap">
+<style>
+body{margin:0;background:#EDE8E2;color:#1B1613;font-family:'Onest',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+a{color:#B5401F}a:hover{color:#8E2F15}
+button,input{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A06A;outline-offset:3px}
+.fs-glow{animation:fsBreath 9s ease-in-out infinite alternate}
+@keyframes fsBreath{from{transform:scale(1) translate(0,0);opacity:.92}to{transform:scale(1.12) translate(3%,-2%);opacity:1}}
+@media (prefers-reduced-motion:reduce){.fs-glow{animation:none}html{scroll-behavior:auto}}
+@media (max-width:860px){.fs-links{display:none!important}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<template id="tpl">
+
+<div style="background: #EDE8E2; color: #1B1613; font-family: 'Onest', system-ui, sans-serif; overflow-x: hidden; min-width: 0">
+
+<!-- ═══════════ HERO ═══════════ -->
+<header style="position: relative; overflow: hidden; background: #1B1613; color: #F4F4F0">
+  <div class="fs-glow" aria-hidden="true" style="position: absolute; left: -18%; bottom: -55%; width: 95%; height: 140%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 32%, rgba(140,40,14,0.55) 60%, rgba(27,22,19,0) 100%); filter: blur(10px); pointer-events: none"></div>
+  <div class="fs-glow" aria-hidden="true" style="position: absolute; right: -20%; top: -40%; width: 60%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, rgba(232,160,106,0.35) 0%, rgba(196,66,30,0.18) 45%, rgba(27,22,19,0) 100%); pointer-events: none"></div>
+
+  <nav aria-label="Главное меню" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+    <a href="#top" style="color: #F4F4F0; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase">Flow&#160;Lab</a>
+    <div class="fs-links" style="display: flex; gap: 28px; align-items: center; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase">
+      <a href="#buttons" style="color: rgba(244,244,240,0.78); text-decoration: none">Кнопки</a>
+      <a href="#calc" style="color: rgba(244,244,240,0.78); text-decoration: none">Калькулятор</a>
+      <a href="#process" style="color: rgba(244,244,240,0.78); text-decoration: none">Процесс</a>
+      <a href="#price" style="color: rgba(244,244,240,0.78); text-decoration: none">Стоимость</a>
+      <a href="#faq" style="color: rgba(244,244,240,0.78); text-decoration: none">Вопросы</a>
+    </div>
+    <a href="#form" style="color: #1B1613; background: #F4F4F0; text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 13px 20px; border-radius: 999px; white-space: nowrap">Созвон →</a>
+  </nav>
+
+  <div id="top" style="position: relative; max-width: 1200px; margin: 0 auto; padding: clamp(48px, 9vw, 120px) clamp(16px, 4vw, 48px) clamp(64px, 10vw, 140px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end">
+    <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">[ лаборатория автоматизации Revit для архитектурных бюро ]</p>
+      <h1 style="margin: 0; font-weight: 600; font-size: clamp(34px, 6.6vw, 92px); line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase">Рабочая документация в&#160;Revit на&#160;кнопках</h1>
+      <p style="margin: 0; max-width: 640px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.22; color: #F1D9C4">Под EIR девелопера: модель проходит проверку заказчика, а&#160;команда занимается проектом, а&#160;не&#160;рутиной.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px 0; max-width: 680px; font-size: 14px; line-height: 1.4; color: rgba(244,244,240,0.9)">
+        <span style="flex: 1 1 100%; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">Лаборатория, а&#160;не&#160;коробка с&#160;плагином</span>
+        <span style="flex: 1 1 180px; padding: 12px 16px 12px 0; border-top: 1px solid rgba(244,244,240,0.22)"><b style="color: #E8A06A; font-weight: 600">01</b> Изучаем, как работает ваша команда и&#160;ваш EIR</span>
+        <span style="flex: 1 1 180px; padding: 12px 16px 12px 0; border-top: 1px solid rgba(244,244,240,0.22)"><b style="color: #E8A06A; font-weight: 600">02</b> Настраиваем кнопки под ваши правила</span>
+        <span style="flex: 1 1 180px; padding: 12px 16px 12px 0; border-top: 1px solid rgba(244,244,240,0.22)"><b style="color: #E8A06A; font-weight: 600">03</b> Замеряем время до&#160;и&#160;после</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 8px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">Кто вы в бюро?</p>
+        <div role="group" aria-label="Выберите роль" style="display: flex; flex-wrap: wrap; gap: 10px">
+          <sc-for list="{{roles}}" as="r" hint-placeholder-count="3">
+            <button type="button" onClick="{{r.pick}}" aria-pressed="{{r.pressed}}" style="min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 1px solid {{r.heroBorder}}; background: {{r.heroBg}}; color: {{r.heroFg}}; font-size: 14px; font-weight: 500; cursor: pointer">{{r.label}}</button>
+          </sc-for>
+        </div>
+        <p style="margin: 0; max-width: 600px; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.86); min-height: 50px">{{roleLine}}</p>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 4px">
+        <a href="#form" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 30px; border-radius: 999px; background: #E8A06A; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase">Записаться на созвон <span aria-hidden="true">→</span></a>
+        <a href="#calc" style="color: #F4F4F0; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-underline-offset: 6px">Посчитать экономию</a>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0 0 6px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: #E8A06A">вручную → кнопкой</p>
+      <sc-for list="{{heroOps}}" as="o" hint-placeholder-count="3">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 16px 0; border-top: 1px solid rgba(244,244,240,0.22)">
+          <span style="font-size: 14px; line-height: 1.35; color: rgba(244,244,240,0.86)">{{o.short}}</span>
+          <span style="white-space: nowrap; font-size: 15px; font-weight: 500"><span style="color: rgba(244,244,240,0.6)">{{o.manualTxt}}</span> <span style="color: #E8A06A">→ {{o.btnTxt}}</span></span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ КОРОТКО О ГЛАВНОМ ═══════════ -->
+<section aria-labelledby="sum-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px">
+  <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 20px">
+    <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 18px"></span>
+    <h2 id="sum-h" style="margin: 0; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Коротко о&#160;главном →</h2>
+  </div>
+  <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5">
+    <p style="margin: 0">Девелоперы требуют модель по&#160;своему EIR: коды, параметры, рабочие наборы, оформление по&#160;ГОСТ. Модель проверяют до&#160;приёмки комплекта.</p>
+    <p style="margin: 0">Корпуса растут до&#160;60 этажей. Эталонный этаж оформляют один раз, а&#160;потом его нужно повторить на&#160;десятках этажей без ошибок. Команда тратит недели на&#160;перекладывание параметров вместо проекта.</p>
+    <p style="margin: 0; color: {{accent}}; font-weight: 500">Мы настраиваем шаблон и&#160;BEP под ваш EIR, ставим кнопки на&#160;все планы АИ и&#160;ведём модель до&#160;сдачи.</p>
+  </div>
+</section>
+
+<!-- ═══════════ ПРОБЛЕМА → РЕШЕНИЕ ═══════════ -->
+<section aria-labelledby="pain-h" style="background: #F4F4F0">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
+    <div style="display: flex; align-items: center; gap: 20px">
+      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
+      <h2 id="pain-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Ваша боль → что делает кнопка</h2>
+    </div>
+    <div style="display: flex; flex-direction: column">
+      <sc-for list="{{pains}}" as="p" hint-placeholder-count="4">
+        <div style="display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline; padding: 26px 0; border-top: 1px solid rgba(27,22,19,0.16)">
+          <p style="margin: 0; flex: 1 1 280px; font-size: clamp(17px, 1.5vw, 19px); line-height: 1.45">{{p.pain}}</p>
+          <span aria-hidden="true" style="flex: none; font-size: 22px; color: {{accent}}">→</span>
+          <div style="flex: 1.3 1 320px; display: flex; flex-direction: column; gap: 6px">
+            <p style="margin: 0; font-weight: 600; font-size: 16px">{{p.fix}}</p>
+            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">{{p.detail}}</p>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ГЛОУ-РАЗДЕЛИТЕЛЬ ═══════════ -->
+<div aria-hidden="true" style="position: relative; overflow: hidden; background: #1B1613; height: clamp(220px, 30vw, 380px)">
+  <div class="fs-glow" style="position: absolute; left: -10%; top: -30%; width: 80%; height: 160%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 35%, rgba(120,34,12,0.5) 62%, rgba(27,22,19,0) 100%); filter: blur(8px)"></div>
+  <div style="position: relative; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: flex-end">
+    <span style="color: #F4F4F0; font-weight: 600; font-size: clamp(34px, 6vw, 80px); letter-spacing: 0.02em; text-transform: uppercase">Решение →</span>
+  </div>
+</div>
+
+<!-- ═══════════ ЛЕНТА REVIT ═══════════ -->
+<section id="buttons" aria-labelledby="rib-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 20px">
+      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
+      <h2 id="rib-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Вкладка Flow в&#160;вашем Revit</h2>
+    </div>
+    <p style="margin: 0; max-width: 420px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Нажмите на&#160;кнопку на&#160;ленте и&#160;посмотрите, сколько времени она забирает на&#160;себя.</p>
+  </div>
+
+  <!-- макет окна -->
+  <div style="border-radius: 14px; overflow: hidden; background: #F4F4F0; box-shadow: 0 30px 80px -40px rgba(60,30,15,0.45), 0 0 0 1px rgba(27,22,19,0.1)">
+    <div style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #2A221D; color: rgba(244,244,240,0.75); font-size: 12px">
+      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #C4421E"></span>
+      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #E8A06A"></span>
+      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #8C7F74"></span>
+      <span style="margin-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Autodesk Revit · Демо-модель.rvt · План 3 этажа</span>
+    </div>
+    <div style="overflow-x: auto; background: #E4DDD5; border-bottom: 1px solid rgba(27,22,19,0.12)">
+      <div style="display: flex; gap: 2px; padding: 0 10px; font-size: 13px; white-space: nowrap; min-width: max-content">
+        <span style="padding: 10px 14px; color: #6F645B">Архитектура</span>
+        <span style="padding: 10px 14px; color: #6F645B">Вставка</span>
+        <span style="padding: 10px 14px; color: #6F645B">Аннотации</span>
+        <span style="padding: 10px 14px; color: #6F645B">Вид</span>
+        <span style="padding: 10px 14px; color: #6F645B">Управление</span>
+        <span style="padding: 10px 16px; background: #F4F4F0; color: {{accent}}; font-weight: 600; border-radius: 8px 8px 0 0; box-shadow: inset 0 2px 0 {{accent}}">Flow</span>
+      </div>
+    </div>
+    <div style="overflow-x: auto; background: #F4F4F0">
+      <div role="toolbar" aria-label="Кнопки Flow" style="display: flex; gap: 8px; padding: 14px 14px 10px; min-width: max-content">
+        <sc-for list="{{ribbon}}" as="b" hint-placeholder-count="5">
+          <button type="button" onClick="{{b.pick}}" aria-pressed="{{b.pressed}}" style="width: 112px; min-height: 96px; padding: 12px 8px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; border-radius: 10px; border: 1px solid {{b.border}}; background: {{b.bg}}; color: #1B1613; cursor: pointer; font-size: 12px; line-height: 1.25; text-align: center">
+            <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; background: {{b.iconBg}}; color: {{b.iconFg}}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{b.icon}}"></path></svg>
+            </span>
+            <span>{{b.label}}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display: flex; gap: 8px; padding: 0 14px 10px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6F645B; min-width: max-content">
+        <span style="width: 232px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Отделка</span>
+        <span style="width: 112px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Ведомости</span>
+        <span style="width: 112px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Проверка</span>
+        <span style="width: 112px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Этажи</span>
+      </div>
+    </div>
+
+    <!-- результат нажатия -->
+    <div style="display: flex; flex-wrap: wrap; gap: 32px 48px; padding: clamp(24px, 4vw, 44px); background: #EDE8E2; border-top: 1px solid rgba(27,22,19,0.1)">
+      <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Кнопка «{{op.label}}»</p>
+        <h3 style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.15">{{op.name}}</h3>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #5E544D">{{op.desc}}</p>
+      </div>
+      <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px; justify-content: center">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; justify-content: space-between; font-size: 14px"><span>Вручную</span><span style="font-weight: 600">{{op.manualTxt}}</span></div>
+          <div style="height: 14px; border-radius: 999px; background: rgba(27,22,19,0.08); overflow: hidden"><div style="height: 100%; width: 100%; border-radius: 999px; background: #8C7F74"></div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; justify-content: space-between; font-size: 14px"><span>Кнопкой</span><span style="font-weight: 600; color: {{accent}}">{{op.btnTxt}}</span></div>
+          <div style="height: 14px; border-radius: 999px; background: rgba(27,22,19,0.08); overflow: hidden"><div style="height: 100%; width: {{op.btnPct}}; min-width: 14px; border-radius: 999px; background: {{accent}}; transition: width .5s ease"></div></div>
+        </div>
+        <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 26px; color: #1B1613">в&#160;{{op.ratio}} раз быстрее</p>
+      </div>
+    </div>
+  </div>
+  <p style="margin: 0; font-size: 13px; color: #6F645B">Макет нарисован для сайта, модель демонстрационная. Время операций из&#160;нашего коммерческого предложения.</p>
+</section>
+
+<!-- ═══════════ ЧТО ВХОДИТ ═══════════ -->
+<section aria-labelledby="inc-h" style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(64px, 8vw, 110px); box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+  <h2 id="inc-h" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Что входит во&#160;внедрение</h2>
+  <div style="position: relative; overflow: hidden; border-radius: 16px; background: #1B1613; color: #F4F4F0; padding: clamp(28px, 4vw, 52px)">
+    <div class="fs-glow" aria-hidden="true" style="position: absolute; right: -20%; top: -60%; width: 75%; height: 220%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,120,47,0.85) 0%, rgba(196,66,30,0.45) 40%, rgba(27,22,19,0) 100%)"></div>
+    <div style="position: relative; max-width: 640px; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">Основа продукта</p>
+      <p style="margin: 0; font-size: clamp(26px, 3.2vw, 40px); font-weight: 600; line-height: 1.1">Кнопки на&#160;все планы раздела АИ</p>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(244,244,240,0.85)">Отделка, полы, потолки, плинтусы и&#160;профили, мебель, двери и&#160;люки, свет, развёртки, ведомости, листы, тиражирование этажей, самопроверка EIR. Именно они сокращают часы.</p>
+    </div>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
+    <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
+      <p style="margin: 0; font-size: 20px; font-weight: 600"><span style="color: {{accent}}">+</span> Шаблон под EIR</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">Параметры, коды, марки, оформление по&#160;ГОСТ.</p>
+    </div>
+    <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
+      <p style="margin: 0; font-size: 20px; font-weight: 600"><span style="color: {{accent}}">+</span> BEP</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">Доводим до&#160;утверждения заказчиком.</p>
+    </div>
+    <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
+      <p style="margin: 0; font-size: 20px; font-weight: 600"><span style="color: {{accent}}">+</span> Ведение до&#160;сдачи</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">Выгрузки, коллизии, правки АР, замечания заказчика.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ КАЛЬКУЛЯТОР ═══════════ -->
+<section id="calc" aria-labelledby="calc-h" style="background: #F4F4F0">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+    <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
+      <div style="display: flex; align-items: center; gap: 20px">
+        <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
+        <h2 id="calc-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Посчитайте свои часы</h2>
+      </div>
+      <p style="margin: 0; max-width: 440px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Сколько раз в&#160;месяц один ваш сотрудник делает каждую операцию?</p>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch">
+      <div style="flex: 999 1 600px; min-width: 0; border-radius: 16px; overflow: hidden; background: #FBFAF7; box-shadow: 0 0 0 1px rgba(27,22,19,0.08)">
+        <div style="overflow-x: auto">
+          <div style="min-width: 560px">
+            <div style="display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 0.9fr) minmax(0, 0.8fr) minmax(0, 1.3fr); gap: 12px; padding: 14px 20px; background: #E4DDD5; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5E544D">
+              <span>Операция</span><span>Вручную</span><span>Кнопкой</span><span style="text-align: right">Раз в месяц</span>
+            </div>
+            <sc-for list="{{calcOps}}" as="c" hint-placeholder-count="5">
+              <div style="display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 0.9fr) minmax(0, 0.8fr) minmax(0, 1.3fr); gap: 12px; align-items: center; padding: 14px 20px; border-top: 1px solid rgba(27,22,19,0.08)">
+                <span style="font-size: 15px; line-height: 1.35">{{c.name}}</span>
+                <span style="font-size: 15px; color: #5E544D">{{c.manualTxt}}</span>
+                <span style="font-size: 15px; font-weight: 600; color: {{accent}}">{{c.btnTxt}}</span>
+                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px">
+                  <button type="button" onClick="{{c.dec}}" aria-label="Меньше: {{c.name}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">−</button>
+                  <span aria-live="polite" style="min-width: 32px; text-align: center; font-size: 17px; font-weight: 600">{{c.count}}</span>
+                  <button type="button" onClick="{{c.inc}}" aria-label="Больше: {{c.name}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">+</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-top: 1px solid rgba(27,22,19,0.12); background: #F4F0EA">
+          <span style="font-size: 15px; font-weight: 500">Сотрудников на&#160;РД АИ</span>
+          <div style="display: flex; align-items: center; gap: 6px">
+            <button type="button" onClick="{{decPeople}}" aria-label="Меньше сотрудников" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">−</button>
+            <span aria-live="polite" style="min-width: 32px; text-align: center; font-size: 17px; font-weight: 600">{{people}}</span>
+            <button type="button" onClick="{{incPeople}}" aria-label="Больше сотрудников" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex: 1 1 320px; min-width: 0; position: relative; overflow: hidden; border-radius: 16px; background: #1B1613; color: #F4F4F0; padding: 32px; display: flex; flex-direction: column; gap: 22px; justify-content: space-between">
+        <div class="fs-glow" aria-hidden="true" style="position: absolute; left: -40%; bottom: -60%; width: 140%; height: 120%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,120,47,0.8) 0%, rgba(196,66,30,0.4) 45%, rgba(27,22,19,0) 100%)"></div>
+        <div style="position: relative; display: flex; flex-direction: column; gap: 6px">
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">В месяц на&#160;команду</p>
+          <p style="margin: 0; font-size: 18px"><span style="color: rgba(244,244,240,0.7)">{{calc.manualH}} ч</span> <span style="color: #E8A06A">→ {{calc.btnH}} ч</span></p>
+        </div>
+        <div style="position: relative; display: flex; flex-direction: column; gap: 4px">
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">Освобождается</p>
+          <p aria-live="polite" style="margin: 0; font-size: clamp(48px, 6vw, 72px); font-weight: 600; line-height: 1">{{calc.savedH}}&#160;ч</p>
+          <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; color: #F1D9C4">это ≈ {{calc.days}} рабочих дней по&#160;8&#160;часов</p>
+        </div>
+        <a href="#form" style="position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #F4F4F0; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">Разобрать мой объект →</a>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6F645B">Значения по&#160;умолчанию даны для примера, подставьте свои. Расчёт ориентировочный: точный считаем на&#160;созвоне по&#160;замерам на&#160;вашем объекте.</p>
+  </div>
+</section>
+
+<!-- ═══════════ ПРОЦЕСС ═══════════ -->
+<section id="process" aria-labelledby="proc-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 36px">
+  <div style="display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 20px">
+      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
+      <h2 id="proc-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Под ключ</h2>
+    </div>
+    <div role="group" aria-label="Как показать процесс" style="display: inline-flex; padding: 4px; border-radius: 999px; background: #E2DBD2">
+      <button type="button" onClick="{{showSteps}}" aria-pressed="{{procSteps}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: {{procStepsBg}}; color: {{procStepsFg}}; font-size: 14px; font-weight: 500; cursor: pointer">8 шагов</button>
+      <button type="button" onClick="{{showWeeks}}" aria-pressed="{{procWeeks}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: {{procWeeksBg}}; color: {{procWeeksFg}}; font-size: 14px; font-weight: 500; cursor: pointer">По неделям</button>
+    </div>
+  </div>
+
+  <sc-if value="{{procSteps}}" hint-placeholder-val="{{true}}">
+    <div style="display: flex; flex-direction: column; gap: 28px">
+      <div style="overflow-x: auto; padding-bottom: 4px">
+        <ol style="list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; min-width: max-content">
+          <sc-for list="{{steps}}" as="s" hint-placeholder-count="8">
+            <li style="display: flex; align-items: center">
+              <button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="width: 128px; min-height: 120px; padding: 14px 12px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; text-align: left; border-radius: 12px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; cursor: pointer">
+                <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: {{s.numFg}}">{{s.num}}</span>
+                <span style="font-size: 14px; line-height: 1.3; font-weight: 500">{{s.title}}</span>
+              </button>
+              <span aria-hidden="true" style="width: 26px; text-align: center; color: {{accent}}; font-size: 16px">{{s.arrow}}</span>
+            </li>
+          </sc-for>
+        </ol>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px 48px; align-items: baseline; padding: 28px 0 0; border-top: 1px solid rgba(27,22,19,0.16)">
+        <p style="margin: 0; flex: none; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(54px, 7vw, 88px); line-height: 0.9; color: {{accent}}">{{step.num}}</p>
+        <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+          <h3 style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600">{{step.title}}</h3>
+          <p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 1.55; color: #5E544D">{{step.text}}</p>
+          <div style="display: flex; gap: 10px; margin-top: 8px">
+            <button type="button" onClick="{{prevStep}}" aria-label="Предыдущий шаг" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.24); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">←</button>
+            <button type="button" onClick="{{nextStep}}" aria-label="Следующий шаг" style="width: 48px; height: 48px; border-radius: 50%; border: 0; background: #1B1613; color: #F4F4F0; font-size: 18px; cursor: pointer">→</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{procWeeks}}" hint-placeholder-val="{{false}}">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0">
+      <sc-for list="{{weeks}}" as="w" hint-placeholder-count="4">
+        <div style="padding: 22px 22px 28px 0; border-top: 2px solid {{accent}}; display: flex; flex-direction: column; gap: 10px">
+          <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">{{w.when}} →</p>
+          <p style="margin: 0; font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em">{{w.title}}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E544D">{{w.text}}</p>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+</section>
+
+<!-- ═══════════ КЕЙС ═══════════ -->
+<sc-if value="{{caseOn}}" hint-placeholder-val="{{true}}">
+<section aria-labelledby="case-h" style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(64px, 8vw, 110px); box-sizing: border-box">
+  <div style="position: relative; overflow: hidden; border-radius: 16px; background: #1B1613; color: #F4F4F0; display: flex; flex-wrap: wrap">
+    <div aria-hidden="true" style="flex: 1 1 340px; min-height: 280px; position: relative; overflow: hidden; background: linear-gradient(160deg, #6B4A33 0%, #3A2A20 55%, #1B1613 100%)">
+      <div class="fs-glow" style="position: absolute; left: 10%; top: 20%; width: 90%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,150,80,0.75) 0%, rgba(196,66,30,0.35) 50%, rgba(27,22,19,0) 100%)"></div>
+      <div style="position: absolute; left: 14%; right: 14%; bottom: 0; height: 72%; display: flex; align-items: flex-end; gap: 10%">
+        <div style="flex: 1; height: 70%; border-radius: 6px 6px 0 0; background: rgba(244,236,226,0.14); box-shadow: inset 0 0 0 1px rgba(244,236,226,0.2)"></div>
+        <div style="flex: 1; height: 100%; border-radius: 6px 6px 0 0; background: rgba(244,236,226,0.2); box-shadow: inset 0 0 0 1px rgba(244,236,226,0.28)"></div>
+        <div style="flex: 1; height: 82%; border-radius: 6px 6px 0 0; background: rgba(244,236,226,0.14); box-shadow: inset 0 0 0 1px rgba(244,236,226,0.2)"></div>
+      </div>
+    </div>
+    <div style="flex: 1.3 1 380px; min-width: 0; padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; gap: 18px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">{{caseData.tag}}</p>
+      <h2 id="case-h" style="margin: 0; font-size: clamp(24px, 3vw, 36px); font-weight: 600; line-height: 1.1; text-transform: uppercase">{{caseData.title}}</h2>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,244,240,0.65)">Задача</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.88)">{{caseData.task}}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,244,240,0.65)">Что сделали</p>
+        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.88)">{{caseData.done}}</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 14px; border-top: 1px solid rgba(244,244,240,0.2)">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,244,240,0.65)">Результат</p>
+        <p style="margin: 0; font-size: clamp(32px, 4vw, 52px); font-weight: 600; line-height: 1.05">{{caseData.before}} <span style="color: #E8A06A">→ {{caseData.after}}</span></p>
+        <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: #F1D9C4">{{caseData.note}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<!-- ═══════════ СТОИМОСТЬ ═══════════ -->
+<div aria-hidden="true" style="position: relative; overflow: hidden; background: #1B1613; height: clamp(200px, 26vw, 340px)">
+  <div class="fs-glow" style="position: absolute; right: -15%; top: -40%; width: 85%; height: 180%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 35%, rgba(120,34,12,0.5) 62%, rgba(27,22,19,0) 100%); filter: blur(8px)"></div>
+  <div style="position: relative; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; align-items: center">
+    <span style="color: #F4F4F0; font-weight: 600; font-size: clamp(32px, 5.6vw, 76px); letter-spacing: 0.02em; text-transform: uppercase">К стоимости →</span>
+  </div>
+</div>
+
+<section id="price" aria-labelledby="price-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
+  <div style="display: flex; align-items: center; gap: 20px">
+    <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
+    <h2 id="price-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Стоимость</h2>
+  </div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 28px">
+    <div style="flex: 999 1 560px; min-width: 0; border-radius: 16px; overflow: hidden; background: #FBFAF7; box-shadow: 0 0 0 1px rgba(27,22,19,0.08)">
+      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 14px 22px; background: #E4DDD5; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5E544D"><span>Блок</span><span>Цена</span></div>
+      <sc-for list="{{priceRows}}" as="pr" hint-placeholder-count="5">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 22px; border-top: 1px solid rgba(27,22,19,0.08)">
+          <span style="font-size: 16px; line-height: 1.4">{{pr.name}}</span>
+          <span style="flex: none; font-size: 16px; font-weight: 600; color: {{pr.color}}">{{pr.price}}</span>
+        </div>
+      </sc-for>
+    </div>
+    <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.55">
+      <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 26px; line-height: 1.2">Как фиксируем цену</p>
+      <p style="margin: 0; color: #5E544D">Цена считается от&#160;объёма: корпуса, разрабатываемые этажи, состав планов по&#160;ТЗ. Тиражируемые этажи бесплатно.</p>
+      <p style="margin: 0; color: #5E544D">Оплата по&#160;этапам: шаблон и&#160;BEP, затем кнопки, затем ведение помесячно.</p>
+    </div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
+    <div style="padding: 30px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Пилот без риска</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55">Начинаем с&#160;одного корпуса или эталонного этажа{{pilotPrice}}. Замеряем экономию на&#160;вашем объекте. Пилот засчитывается в&#160;проект.</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E544D">Нет оговорённой экономии: возвращаем деньги или доделываем бесплатно.</p>
+    </div>
+    <div style="padding: 30px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Простая математика</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55">Часы экономии × стоимость часа вашего сотрудника. Свои часы можно прикинуть в&#160;<a href="#calc" style="color: {{accent}}">калькуляторе</a>, остальное посчитаем вместе на&#160;созвоне.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ЧТОБЫ НАЧАТЬ ═══════════ -->
+<section aria-labelledby="start-h" style="background: #F4F4F0">
+  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px">
+    <h2 id="start-h" style="margin: 0; flex: 1 1 300px; font-size: clamp(32px, 4.4vw, 58px); font-weight: 600; line-height: 1; text-transform: uppercase">Чтобы начать работу, нужно:</h2>
+    <div style="flex: 999 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">От вас</p>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.45">
+          <li>→ EIR и&#160;ТЗ заказчика</li>
+          <li>→ модель АР и&#160;график</li>
+          <li>→ ответственный за&#160;BIM</li>
+          <li>→ договор и&#160;оплата пилота</li>
+        </ul>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">От нас</p>
+        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.45">
+          <li>→ разбор EIR за&#160;2 дня</li>
+          <li>→ договор и&#160;план пилота</li>
+          <li>→ шаблон и&#160;BEP за&#160;2 недели</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FAQ ═══════════ -->
+<section id="faq" aria-labelledby="faq-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 64px">
+  <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 20px">
+    <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 18px"></span>
+    <h2 id="faq-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Частые вопросы</h2>
+  </div>
+  <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+    <sc-for list="{{faq}}" as="q" hint-placeholder-count="7">
+      <div style="border-top: 1px solid rgba(27,22,19,0.16)">
+        <button type="button" onClick="{{q.toggle}}" aria-expanded="{{q.open}}" style="width: 100%; min-height: 64px; padding: 18px 0; display: flex; justify-content: space-between; align-items: center; gap: 20px; border: 0; background: transparent; color: #1B1613; text-align: left; font-size: clamp(17px, 1.6vw, 19px); font-weight: 500; cursor: pointer">
+          <span>{{q.q}}</span>
+          <span aria-hidden="true" style="flex: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(27,22,19,0.2); color: {{accent}}; font-size: 20px; line-height: 1">{{q.sign}}</span>
+        </button>
+        <sc-if value="{{q.open}}" hint-placeholder-val="{{false}}">
+          <p style="margin: 0; padding: 0 56px 22px 0; font-size: 16px; line-height: 1.6; color: #5E544D">{{q.a}}</p>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ═══════════ ФОРМА ═══════════ -->
+<section id="form" aria-labelledby="form-h" style="position: relative; overflow: hidden; background: #1B1613; color: #F4F4F0">
+  <div class="fs-glow" aria-hidden="true" style="position: absolute; left: -25%; top: 10%; width: 90%; height: 120%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,120,47,0.75) 0%, rgba(196,66,30,0.38) 45%, rgba(27,22,19,0) 100%)"></div>
+  <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 120px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px">
+    <div style="flex: 1 1 320px; display: flex; flex-direction: column; gap: 18px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">Консультация · 30 минут</p>
+      <h2 id="form-h" style="margin: 0; font-size: clamp(32px, 4.4vw, 58px); font-weight: 600; line-height: 1; text-transform: uppercase">Записаться на&#160;созвон</h2>
+      <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 26px; line-height: 1.25; color: #F1D9C4">Разберём ваш EIR и&#160;покажем, какие операции стоит отдать кнопкам в&#160;первую очередь.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 8px">
+        <a href="https://t.me/F_Lebedik" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #F4F4F0; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.5 3.5 2.8 10.7c-1 .4-1 1.6 0 1.9l4.6 1.5 1.8 5.6c.3.8 1.3 1 1.9.4l2.6-2.5 4.8 3.5c.7.5 1.7.1 1.9-.7L23 4.9c.2-1-.6-1.8-1.5-1.4Z" fill="#1B1613"/><path d="m8 14 9.5-6.5" stroke="#F4F4F0" stroke-width="1.6" stroke-linecap="round"/></svg>Написать в&#160;Telegram</a>
+        <span style="font-size: 15px; color: rgba(244,244,240,0.85); user-select: all">+7 950 033-70-66</span>
+      </div>
+    </div>
+
+    <div style="flex: 999 1 520px; min-width: 0; border-radius: 18px; background: rgba(244,244,240,0.97); color: #1B1613; padding: clamp(22px, 3.4vw, 40px); box-shadow: 0 40px 90px -40px rgba(0,0,0,0.6)">
+      <sc-if value="{{formOpen}}" hint-placeholder-val="{{true}}">
+        <div style="display: flex; flex-direction: column; gap: 24px">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px">
+            <p style="margin: 0; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: #5E544D">Шаг {{stepNum}} из&#160;4</p>
+            <div aria-hidden="true" style="display: flex; gap: 6px">
+              <sc-for list="{{formDots}}" as="d" hint-placeholder-count="4">
+                <span style="width: 28px; height: 4px; border-radius: 4px; background: {{d.bg}}"></span>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{fs0}}" hint-placeholder-val="{{true}}">
+            <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 14px">
+              <legend style="padding: 0; margin-bottom: 14px; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600">Кто вы в&#160;бюро?</legend>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                <sc-for list="{{roles}}" as="r" hint-placeholder-count="3">
+                  <button type="button" onClick="{{r.pick}}" aria-pressed="{{r.pressed}}" style="min-height: 48px; padding: 10px 18px; border-radius: 999px; border: 1px solid {{r.formBorder}}; background: {{r.formBg}}; color: {{r.formFg}}; font-size: 15px; cursor: pointer">{{r.label}}</button>
+                </sc-for>
+              </div>
+            </fieldset>
+          </sc-if>
+
+          <sc-if value="{{fs1}}" hint-placeholder-val="{{false}}">
+            <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 14px">
+              <legend style="padding: 0; margin-bottom: 14px; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600">Что хотите отдать кнопкам? <span style="font-weight: 400; font-size: 15px; color: #5E544D">можно несколько</span></legend>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                <sc-for list="{{tasks}}" as="t" hint-placeholder-count="6">
+                  <button type="button" onClick="{{t.pick}}" aria-pressed="{{t.pressed}}" style="min-height: 48px; padding: 10px 18px; border-radius: 999px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.fg}}; font-size: 15px; cursor: pointer">{{t.label}}</button>
+                </sc-for>
+              </div>
+            </fieldset>
+          </sc-if>
+
+          <sc-if value="{{fs2}}" hint-placeholder-val="{{false}}">
+            <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 14px">
+              <legend style="padding: 0; margin-bottom: 14px; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600">Сколько человек в&#160;бюро?</legend>
+              <div style="display: flex; flex-wrap: wrap; gap: 10px">
+                <sc-for list="{{sizes}}" as="z" hint-placeholder-count="4">
+                  <button type="button" onClick="{{z.pick}}" aria-pressed="{{z.pressed}}" style="min-height: 48px; padding: 10px 18px; border-radius: 999px; border: 1px solid {{z.border}}; background: {{z.bg}}; color: {{z.fg}}; font-size: 15px; cursor: pointer">{{z.label}}</button>
+                </sc-for>
+              </div>
+            </fieldset>
+          </sc-if>
+
+          <sc-if value="{{fs3}}" hint-placeholder-val="{{false}}">
+            <fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 16px">
+              <legend style="padding: 0; margin-bottom: 14px; font-size: clamp(20px, 2.2vw, 26px); font-weight: 600">Как с&#160;вами связаться?</legend>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px">
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Имя *
+                  <input type="text" autocomplete="name" value="{{f.name}}" onChange="{{on_name}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Бюро
+                  <input type="text" autocomplete="organization" value="{{f.company}}" onChange="{{on_company}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Город
+                  <input type="text" autocomplete="address-level2" value="{{f.city}}" onChange="{{on_city}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Телефон
+                  <input type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" value="{{f.phone}}" onChange="{{on_phone}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Telegram
+                  <input type="text" placeholder="@ник" value="{{f.tg}}" onChange="{{on_tg}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Email
+                  <input type="email" autocomplete="email" placeholder="name@buro.ru" value="{{f.email}}" onChange="{{on_email}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Девелопер и его EIR
+                  <input type="text" placeholder="например, EIR заказчика v2" value="{{f.dev}}" onChange="{{on_dev}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Версия Revit
+                  <input type="text" placeholder="2022, 2023, 2025…" value="{{f.revit}}" onChange="{{on_revit}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: #5E544D">Когда удобно созвониться
+                  <input type="text" placeholder="например, вт после 15:00" value="{{f.when}}" onChange="{{on_when}}" style="min-height: 48px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">
+                </label>
+                <label style="display: flex; flex-direction: column; gap: 6px; grid-column: 1 / -1; font-size: 13px; color: #5E544D">Что хотите автоматизировать, своими словами
+                  <textarea rows="3" onChange="{{on_req}}" style="min-height: 96px; padding: 12px 14px; resize: vertical; font-family: inherit; border-radius: 10px; border: 1px solid rgba(27,22,19,0.24); background: #FFFFFF; color: #1B1613; font-size: 16px">{{f.req}}</textarea>
+                </label>
+                <p style="margin: 0; grid-column: 1 / -1; font-size: 13px; color: #5E544D">* Имя и хотя бы один контакт: телефон, Telegram или email.</p>
+              </div>
+              <label style="display: flex; align-items: flex-start; gap: 12px; font-size: 14px; line-height: 1.45; color: #5E544D; cursor: pointer">
+                <input type="checkbox" checked="{{f.consent}}" onChange="{{onConsent}}" style="width: 22px; height: 22px; margin: 0; flex: none; accent-color: #B5401F">
+                <span>Согласен на&#160;обработку персональных данных по&#160;<a href="#policy" style="color: #B5401F">политике [ссылка на&#160;политику]</a></span>
+              </label>
+            </fieldset>
+          </sc-if>
+
+          <sc-if value="{{formError}}" hint-placeholder-val="{{false}}">
+            <p role="alert" style="margin: 0; font-size: 14px; color: #A3361A">{{formErrorText}}</p>
+          </sc-if>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center">
+            <sc-if value="{{canBack}}" hint-placeholder-val="{{false}}">
+              <button type="button" onClick="{{formBack}}" style="min-height: 52px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(27,22,19,0.24); background: transparent; color: #1B1613; font-size: 15px; cursor: pointer">← Назад</button>
+            </sc-if>
+            <sc-if value="{{isFirst}}" hint-placeholder-val="{{true}}"><span></span></sc-if>
+            <button type="button" onClick="{{formNext}}" style="min-height: 52px; padding: 0 28px; border-radius: 999px; border: 0; background: #1B1613; color: #F4F4F0; font-size: 15px; font-weight: 600; letter-spacing: 0.04em; cursor: pointer">{{nextLabel}}</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{formDone}}" hint-placeholder-val="{{false}}">
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 34px; line-height: 1.1; color: #B5401F">Спасибо, {{f.name}}!</p>
+          <p style="margin: 0; font-size: 17px; line-height: 1.55">Заявка заполнена. Вот что вы указали:</p>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 15px; line-height: 1.45; color: #5E544D">
+            <li>→ {{summary.role}}</li>
+            <li>→ {{summary.tasks}}</li>
+            <li>→ {{summary.size}}</li>
+            <li>→ {{summary.contact}}</li>
+          </ul>
+          <p style="margin: 0; font-size: 15px; line-height: 1.55">Если удобнее, напишите нам напрямую в&#160;Telegram: <a href="https://t.me/F_Lebedik" target="_blank" rel="noopener" style="color: #B5401F">@F_Lebedik</a></p>
+          <p style="margin: 0; padding: 10px 14px; border-radius: 10px; background: #EDE8E2; font-size: 13px; color: #5E544D">[Макет: отправка в Telegram и в таблицу заявок подключается после переезда на домен.]</p>
+          <button type="button" onClick="{{formEdit}}" style="align-self: flex-start; min-height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(27,22,19,0.24); background: transparent; color: #1B1613; font-size: 15px; cursor: pointer">Изменить ответы</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ ФИНАЛ ═══════════ -->
+<footer style="position: relative; overflow: hidden; background: #1B1613; color: #F4F4F0">
+  <div class="fs-glow" aria-hidden="true" style="position: absolute; left: 10%; top: 20%; width: 110%; height: 140%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 30%, rgba(120,34,12,0.5) 58%, rgba(27,22,19,0) 100%); filter: blur(12px)"></div>
+  <div style="position: relative; max-width: 1200px; margin: 0 auto; padding: clamp(90px, 14vw, 200px) clamp(16px, 4vw, 48px) 40px; box-sizing: border-box; display: flex; flex-direction: column; gap: clamp(60px, 9vw, 120px)">
+    <div style="display: flex; flex-direction: column; gap: 18px">
+      <p style="margin: 0; font-size: 14px; letter-spacing: 0.24em; text-transform: uppercase">Flow Lab <span style="opacity: 0.6">·</span> Флоу Лаб</p>
+      <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(46px, 8.4vw, 120px); line-height: 0.95">Чувствуете, как свободно?</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 32px 64px; align-items: flex-end; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 10px; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase">
+        <a href="#form" style="color: #F4F4F0; text-underline-offset: 6px">→ Записаться на&#160;созвон</a>
+        <a href="https://t.me/F_Lebedik" target="_blank" rel="noopener" style="color: #F4F4F0; text-underline-offset: 6px">→ Telegram @F_Lebedik</a>
+        <span style="color: #F4F4F0; user-select: all">→ +7 950 033-70-66</span>
+        <span style="color: #F4F4F0; user-select: all; text-transform: none; letter-spacing: 0.02em">→ fedorlebedik2@mail.ru</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.5; color: rgba(244,244,240,0.72); max-width: 420px">
+        <span>ИП Лебедик Фёдор Михайлович, ИНН&#160;693500325895, ОГРНИП&#160;325508100024836</span>
+        <a id="policy" href="#policy" style="color: rgba(244,244,240,0.85)">[Политика обработки персональных данных]</a>
+        <span>Москва, 2026</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- липкая кнопка -->
+<sc-if value="{{stickyOn}}" hint-placeholder-val="{{false}}">
+  <a href="#form" style="position: fixed; right: 16px; bottom: 16px; z-index: 50; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #E8A06A; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 14px 40px -12px rgba(27,22,19,0.55)">Записаться на&#160;созвон →</a>
+</sc-if>
+
+</div>
+</template>
+<script>
+/* Мини-движок шаблона: {{путь}}, <sc-for list as>, <sc-if value>, onClick/onChange. Без внешних зависимостей. */
+(function(){
+  function look(scope, expr){
+    expr = expr.trim();
+    if (expr === 'true') return true; if (expr === 'false') return false;
+    if (/^-?\d+(\.\d+)?$/.test(expr)) return +expr;
+    var parts = expr.split('.'), v = scope;
+    for (var i = 0; i < parts.length; i++){ if (v == null) return undefined; v = v[parts[i]]; }
+    return v;
+  }
+  var RE = /\{\{([^}]*)\}\}/g;
+  function interp(str, scope){
+    var m = str.match(/^\{\{([^}]*)\}\}$/);
+    if (m) return look(scope, m[1]);
+    return str.replace(RE, function(_, e){ var v = look(scope, e); return v == null ? '' : String(v); });
+  }
+  // строит "виртуальные" узлы из шаблона
+  function build(node, scope, out){
+    if (node.nodeType === 3){ out.push({t: '#', v: interp(node.nodeValue, scope)}); return; }
+    if (node.nodeType !== 1) return;
+    var tag = node.tagName.toLowerCase();
+    if (tag === 'sc-for'){
+      var list = look(scope, node.getAttribute('list').replace(/[{}]/g, '')) || [], as = node.getAttribute('as');
+      list.forEach(function(item){ var s = Object.create(scope); s[as] = item; kids(node, s, out); });
+      return;
+    }
+    if (tag === 'sc-if'){ if (interp(node.getAttribute('value'), scope)) kids(node, scope, out); return; }
+    var v = {t: tag, a: {}, on: {}, p: {}, c: []};
+    for (var i = 0; i < node.attributes.length; i++){
+      var at = node.attributes[i], n = at.name;
+      if (n.indexOf('hint-') === 0) continue;
+      var val = interp(at.value, scope);
+      if (n === 'onclick') v.on.click = val;
+      else if (n === 'onchange') v.on.change = val;
+      else if (n === 'checked') v.p.checked = !!val;
+      else if (n === 'value' && (tag === 'input' || tag === 'textarea')) v.p.value = val == null ? '' : String(val);
+      else if (val === false || val == null) continue;
+      else v.a[n] = val === true ? (n.indexOf('aria-') === 0 ? 'true' : '') : String(val);
+    }
+    if (tag === 'textarea'){ var txt = ''; node.childNodes.forEach(function(c){ if (c.nodeType === 3) txt += interp(c.nodeValue, scope); }); v.p.value = txt; }
+    else kids(node, scope, v.c);
+    out.push(v);
+  }
+  function kids(node, scope, out){ var src = node.content || node; for (var c = src.firstChild; c; c = c.nextSibling) build(c, scope, out); }
+  function create(v){
+    if (v.t === '#') return document.createTextNode(v.v);
+    var el = /^(svg|path|circle|rect|line|polyline|polygon|g|defs|lineargradient|radialgradient|stop|text|tspan|ellipse|use)$/.test(v.t) || v.svg
+      ? document.createElementNS('http://www.w3.org/2000/svg', v.t) : document.createElement(v.t);
+    patchEl(el, v); return el;
+  }
+  function patchEl(el, v){
+    var a = v.a, k;
+    for (var i = el.attributes.length - 1; i >= 0; i--){ k = el.attributes[i].name; if (!(k in a)) el.removeAttribute(k); }
+    for (k in a) if (el.getAttribute(k) !== a[k]) el.setAttribute(k, a[k]);
+    el.__on = v.on;
+    if ('checked' in v.p && el.checked !== v.p.checked) el.checked = v.p.checked;
+    if ('value' in v.p && el.value !== v.p.value) el.value = v.p.value;
+    if (v.t !== 'textarea') morphKids(el, v.c);
+  }
+  function morphKids(el, list){
+    var i = 0, cur = el.firstChild;
+    for (; i < list.length; i++){
+      var v = list[i];
+      if (!cur){ el.appendChild(create(v)); continue; }
+      var next = cur.nextSibling;
+      if (v.t === '#'){
+        if (cur.nodeType === 3){ if (cur.nodeValue !== v.v) cur.nodeValue = v.v; }
+        else el.replaceChild(create(v), cur);
+      } else if (cur.nodeType === 1 && cur.localName === v.t) patchEl(cur, v);
+      else el.replaceChild(create(v), cur);
+      cur = next;
+    }
+    while (cur){ var n = cur.nextSibling; el.removeChild(cur); cur = n; }
+  }
+  // svg: потомки svg создаём в пространстве SVG
+  var _create = create;
+  create = function(v, inSvg){
+    if (v.t === 'svg' || inSvg){ return svgCreate(v); }
+    return _create(v);
+  };
+  function svgCreate(v){
+    if (v.t === '#') return document.createTextNode(v.v);
+    var el = document.createElementNS('http://www.w3.org/2000/svg', v.t);
+    for (var k in v.a) el.setAttribute(k, v.a[k]);
+    el.__on = v.on;
+    v.c.forEach(function(c){ el.appendChild(svgCreate(c)); });
+    return el;
+  }
+  function DCLogic(props){ this.props = props || {}; this.state = {}; }
+  DCLogic.prototype.setState = function(patch){
+    var s = typeof patch === 'function' ? patch(this.state) : patch;
+    this.state = Object.assign({}, this.state, s);
+    var self = this;
+    if (!self.__q){ self.__q = true; Promise.resolve().then(function(){ self.__q = false; self.__render(); if (self.componentDidUpdate) self.componentDidUpdate(); }); }
+  };
+  function fire(type, e){
+    for (var n = e.target; n && n !== document; n = n.parentNode){
+      if (n.__on && n.__on[type]){ n.__on[type](e); return; }
+    }
+  }
+  window.DCLite = {
+    DCLogic: DCLogic,
+    mount: function(Comp, root, tpl, props){
+      var inst = new Comp(props);
+      inst.__render = function(){ var out = []; kids(tpl, inst.renderVals(), out); morphKids(root, out); };
+      inst.__render();
+      document.addEventListener('click', function(e){ fire('click', e); });
+      document.addEventListener('input', function(e){ fire('change', e); });
+      document.addEventListener('change', function(e){ if (e.target.type === 'checkbox' || e.target.type === 'radio' || e.target.tagName === 'SELECT') fire('change', e); });
+      if (inst.componentDidMount) inst.componentDidMount();
+      return inst;
+    }
+  };
+})();
+
+var DCLogic = DCLite.DCLogic;
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      role: 'gendir', op: 'floor', counts: { room: 20, unfold: 6, furn: 2, eir: 4, floor: 2 }, people: 5,
+      proc: 'steps', step: 0, faqOpen: 0, scrolled: false,
+      fstep: 0, done: false, err: '',
+      f: { name: '', company: '', city: '', phone: '', tg: '', email: '', dev: '', revit: '', when: '', req: '', consent: false }, tasks: [], size: ''
+    };
+    this.onScroll = () => {
+      const s = (window.scrollY || document.documentElement.scrollTop || 0) > 500;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+  }
+  componentDidMount() {
+    try {
+      const raw = window.localStorage.getItem('flowstudio-form');
+      if (raw) {
+        const d = JSON.parse(raw);
+        this.setState({ role: d.role || 'gendir', tasks: d.tasks || [], size: d.size || '', f: Object.assign({}, this.state.f, d.f || {}) });
+      }
+    } catch (e) {}
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+  }
+  componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); }
+  componentDidUpdate() {
+    try {
+      window.localStorage.setItem('flowstudio-form', JSON.stringify({ role: this.state.role, tasks: this.state.tasks, size: this.state.size, f: this.state.f }));
+    } catch (e) {}
+  }
+  fmt(min) {
+    if (min < 60) return min + ' мин';
+    const h = Math.floor(min / 60), m = min % 60;
+    return m ? h + ' ч ' + m + ' мин' : h + ' ч';
+  }
+  num(x) {
+    const r = Math.round(x * 10) / 10;
+    return String(r).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+  // Строка для таблицы «Flow Lab — заявки» и текст для Telegram. Отправку подключим на домене.
+  buildLead(roleLabel) {
+    const s = this.state, f = s.f;
+    return {
+      'Дата и время': new Date().toLocaleString('ru-RU'), 'Имя': f.name, 'Роль': roleLabel || s.role,
+      'Бюро': f.company, 'Размер бюро': s.size, 'Город': f.city, 'Телефон': f.phone, 'Telegram': f.tg, 'Email': f.email,
+      'Девелопер и EIR': f.dev, 'Версия Revit': f.revit, 'Запрос': [s.tasks.join(', '), f.req].filter(Boolean).join('. '),
+      'Время созвона': f.when, 'Источник': 'сайт', 'Статус': 'новая', 'Следующий шаг': '', 'Дата шага': '', 'Комментарий': ''
+    };
+  }
+  setF(key, v) { this.setState({ f: Object.assign({}, this.state.f, { [key]: v }), err: '' }); }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#B5401F';
+    const showPrices = this.props.showPrices ?? false;
+    const caseMode = this.props.caseMode ?? 'demo';
+    const sticky = this.props.stickyButton ?? true;
+    const st = this.state;
+    const self = this;
+
+    const OPS = [
+      { id: 'room', label: 'Отделка помещения', short: 'Отделка помещения', name: 'Отделка помещения: стены, пол, потолок, плинтус, параметры, марки', calcName: 'Отделка помещения', manual: 30, btn: 1,
+        icon: 'M4 20V9l8-5 8 5v11M9 20v-6h6v6M4 20h16',
+        desc: 'Расписывает отделку по помещению целиком: стены, пол, потолок, плинтус, заполняет параметры и ставит марки по правилам вашего EIR.' },
+      { id: 'unfold', label: 'Развёртки', short: 'Развёртки помещения', name: 'Развёртки одного помещения', calcName: 'Развёртки одного помещения', manual: 120, btn: 5,
+        icon: 'M3 6h18v12H3zM9 6v12M15 6v12',
+        desc: 'Собирает развёртки стен помещения и оформляет их, чтобы не строить каждый вид вручную.' },
+      { id: 'furn', label: 'План мебели', short: 'План мебели с ведомостью', name: 'План мебели с марками и ведомостью', calcName: 'План мебели с марками и ведомостью', manual: 135, btn: 5,
+        icon: 'M4 6h16M4 12h16M4 18h10M18 16l2 2-2 2',
+        desc: 'Расставляет марки мебели и собирает ведомость к плану в нужном оформлении.' },
+      { id: 'eir', label: 'Проверка по EIR', short: 'Проверка модели по EIR', name: 'Проверка модели по EIR', calcName: 'Проверка модели по EIR', manual: 165, btn: 5,
+        icon: 'M9 12l2 2 4-4M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z',
+        desc: 'Показывает готовность модели в процентах и исправляет типовые ошибки сама, до того как модель уйдёт заказчику.' },
+      { id: 'floor', label: 'Тиражировать этаж', short: 'Тиражирование этажа', name: 'Тиражирование оформленного этажа', calcName: 'Тиражирование оформленного этажа', manual: 240, btn: 5,
+        icon: 'M4 16l8 4 8-4M4 12l8 4 8-4M12 4l8 4-8 4-8-4z',
+        desc: 'Копирует этаж со всем оформлением на другие этажи. Эталонный этаж оформляете один раз.' }
+    ];
+
+    const ROLES = [
+      { id: 'gendir', label: 'Гендир / развитие', line: 'Сроки РД не двигаются, а часы команды уходят на перекладывание параметров. Кнопки возвращают эти часы в проект.' },
+      { id: 'gap', label: 'ГАП', line: 'Эталонный этаж оформляете один раз, дальше его повторяет кнопка. Команда занимается архитектурой, а не рутиной.' },
+      { id: 'bim', label: 'BIM-координатор', line: 'Модель по EIR девелопера: коды, параметры, рабочие наборы. Самопроверка показывает готовность в процентах до отправки заказчику.' }
+    ];
+    const roles = ROLES.map(r => {
+      const on = st.role === r.id;
+      return {
+        label: r.label, pressed: on ? 'true' : 'false',
+        heroBg: on ? '#E8A06A' : 'rgba(244,244,240,0.06)', heroFg: on ? '#1B1613' : '#F4F4F0', heroBorder: on ? '#E8A06A' : 'rgba(244,244,240,0.32)',
+        formBg: on ? '#1B1613' : 'transparent', formFg: on ? '#F4F4F0' : '#1B1613', formBorder: on ? '#1B1613' : 'rgba(27,22,19,0.24)',
+        pick: () => self.setState({ role: r.id, err: '' })
+      };
+    });
+    const roleObj = ROLES.find(r => r.id === st.role) || ROLES[0];
+
+    const opById = {};
+    OPS.forEach(o => { opById[o.id] = o; });
+    const heroOps = ['room', 'eir', 'floor'].map(id => ({ short: opById[id].short, manualTxt: this.fmt(opById[id].manual), btnTxt: this.fmt(opById[id].btn) }));
+
+    const ribbon = OPS.map(o => {
+      const on = st.op === o.id;
+      return {
+        label: o.label, icon: o.icon, pressed: on ? 'true' : 'false',
+        bg: on ? '#FFFFFF' : 'transparent', border: on ? accent : 'transparent',
+        iconBg: on ? accent : '#E4DDD5', iconFg: on ? '#FFFFFF' : '#1B1613',
+        pick: () => self.setState({ op: o.id })
+      };
+    });
+    const cur = opById[st.op] || OPS[4];
+    const op = {
+      label: cur.label, name: cur.name, desc: cur.desc,
+      manualTxt: this.fmt(cur.manual), btnTxt: this.fmt(cur.btn),
+      btnPct: Math.max(cur.btn / cur.manual * 100, 2).toFixed(1) + '%',
+      ratio: String(Math.round(cur.manual / cur.btn))
+    };
+
+    const pains = [
+      { pain: 'Каждый из десятков этажей оформляют вручную', fix: '«Тиражировать этаж»', detail: 'Этаж с оформлением копируется на другие. 4 часа → 5 минут.' },
+      { pain: 'Модель возвращают по замечаниям EIR', fix: '«Проверка по EIR» и «Устранить замечания»', detail: 'Готовность в процентах, типовые ошибки исправляются сами.' },
+      { pain: 'Отделку, полы и потолки расписывают по каждому помещению', fix: 'Кнопки по планам', detail: 'Стены, полы, потолки, плинтусы, параметры, марки, ведомости. 30 минут на помещение → 1 минута.' },
+      { pain: 'Этажи разных корпусов расходятся между собой', fix: '«Идентичность этажей» и «Обновить проект»', detail: 'Сверка и единый стандарт во всех моделях.' }
+    ];
+
+    const calcOps = OPS.map(o => ({
+      name: o.calcName, manualTxt: this.fmt(o.manual), btnTxt: this.fmt(o.btn), count: st.counts[o.id],
+      inc: () => self.setState({ counts: Object.assign({}, self.state.counts, { [o.id]: Math.min(999, self.state.counts[o.id] + 1) }) }),
+      dec: () => self.setState({ counts: Object.assign({}, self.state.counts, { [o.id]: Math.max(0, self.state.counts[o.id] - 1) }) })
+    }));
+    let mMin = 0, bMin = 0;
+    OPS.forEach(o => { mMin += o.manual * st.counts[o.id]; bMin += o.btn * st.counts[o.id]; });
+    mMin *= st.people; bMin *= st.people;
+    const saved = (mMin - bMin) / 60;
+    const calc = { manualH: this.num(mMin / 60), btnH: this.num(bMin / 60), savedH: this.num(Math.round(saved)), days: this.num(Math.round(saved / 8)) };
+
+    const STEPS = [
+      { title: 'Выявляем запрос на автоматизацию', text: 'Созваниваемся, разбираем EIR, ТЗ и график. Находим операции, которые съедают больше всего часов вашей команды.' },
+      { title: 'Анализируем работу в Revit', text: 'Смотрим, как команда выпускает РД сейчас: какие действия повторяются изо дня в день и где возникают ошибки и возвраты.' },
+      { title: 'Предлагаем автоматизацию', text: 'Описываем, какие кнопки нужны, что делает каждая и какую ручную работу она забирает на себя.' },
+      { title: 'Выпускаем прототип', text: 'Первая версия кнопки на вашей модели: на эталонном этаже или одном корпусе.' },
+      { title: 'Тестируем в полевых условиях', text: 'Команда работает с кнопкой на живом проекте, а мы собираем замечания и замеряем время.' },
+      { title: 'Корректируем кнопку', text: 'Правим логику под ваш EIR, ваши стандарты и привычки команды.' },
+      { title: 'Выпускаем финальную версию', text: 'Стабильная версия с лицензионным ключом на проект и конфигом под EIR.' },
+      { title: 'Обучаем пользоваться', text: 'Показываем команде, как работать с кнопками, и остаёмся на связи до сдачи.' }
+    ];
+    const steps = STEPS.map((s, i) => {
+      const on = st.step === i, past = i < st.step;
+      return {
+        num: String(i + 1).padStart(2, '0'), title: s.title, pressed: on ? 'true' : 'false', arrow: i < STEPS.length - 1 ? '→' : '',
+        bg: on ? '#1B1613' : (past ? '#F4F4F0' : 'transparent'), fg: on ? '#F4F4F0' : '#1B1613',
+        border: on ? '#1B1613' : 'rgba(27,22,19,0.18)', numFg: on ? '#E8A06A' : accent,
+        pick: () => self.setState({ step: i })
+      };
+    });
+    const step = { num: String(st.step + 1).padStart(2, '0'), title: STEPS[st.step].title, text: STEPS[st.step].text };
+    const weeks = [
+      { when: 'неделя 1', title: 'Бриф и EIR', text: 'Разбираем EIR, ТЗ и график, получаем модель АР и образцы.' },
+      { when: 'недели 1–2', title: 'Шаблон и BEP', text: 'Шаблон под EIR, BEP на согласование заказчику.' },
+      { when: 'недели 2–3', title: 'Кнопки и пилот', text: 'Ставим кнопки, обучаем команду, вместе оформляем эталонный этаж.' },
+      { when: 'до сдачи', title: 'Ведение', text: 'Тиражирование этажей, выгрузки, коллизии и замечания заказчика.' }
+    ];
+    const procSteps = st.proc === 'steps';
+
+    const CASES = {
+      demo: { tag: 'Демо-пример · [плейсхолдер]', title: 'РД АИ жилого комплекса: [N] корпуса, [N] этажей',
+        task: 'Интерьеры МОП по EIR девелопера, [N] разрабатываемых этажей, остальные тиражируются.',
+        done: 'Шаблон под EIR, BEP, кнопки на планы отделки, полов и потолков, самопроверка EIR и тиражирование этажей.',
+        before: '[___] ч', after: '[___] ч', note: '[подставим цифры, когда кейс будет согласован]' },
+      real: { tag: 'Мы уже это сделали', title: 'РД АИ жилого комплекса: 3 корпуса, 112 этажей',
+        task: 'Интерьеры МОП по EIR крупного московского девелопера, корпус до 59 этажей, 36 разрабатываемых этажей, остальные тиражируются.',
+        done: 'Шаблон под EIR с нуля, BEP, 24 кнопки на планы отделки, полов и потолков, самопроверка EIR и тиражирование этажей.',
+        before: '657 ч', after: '39 ч', note: 'около 15 недель работы одного специалиста' }
+    };
+    const caseData = CASES[caseMode] || CASES.demo;
+
+    const ask = 'по запросу';
+    const priceRows = [
+      { name: 'Шаблон под EIR заказчика', price: showPrices ? '60 000 ₽' : ask },
+      { name: 'BEP до утверждения', price: showPrices ? '40 000 ₽' : ask },
+      { name: 'Кнопки на все планы АИ', price: showPrices ? '[___] ₽' : ask },
+      { name: 'Ведение до сдачи', price: showPrices ? '[___] ₽ в месяц' : ask },
+      { name: 'Пилот: корпус или эталонный этаж', price: showPrices ? '[100–150] тыс. ₽' : ask }
+    ].map(r => Object.assign(r, { color: r.price === ask ? '#5E544D' : accent }));
+
+    const FAQ = [
+      { q: 'Что такое «кнопка»?', a: 'Команда на отдельной вкладке Flow в Revit. Нажимаете, и операция, которую раньше делали руками (отделка помещения, развёртки, проверка по EIR), выполняется по правилам вашего проекта.' },
+      { q: 'У нас свой EIR и свои стандарты. Подойдёт?', a: 'Кнопки настраиваются под EIR каждого проекта: коды, параметры, марки, оформление. Поэтому первый шаг всегда разбор вашего EIR.' },
+      { q: 'Можно начать с малого?', a: 'Да, с пилота: один корпус или эталонный этаж. Замеряем экономию на вашем объекте, и пилот засчитывается в проект.' },
+      { q: 'Сколько занимает внедрение?', a: 'Типовой план: неделя на бриф и EIR, затем шаблон и BEP, кнопки и пилот, дальше ведение до сдачи. Точный график зависит от объекта, его обсуждаем на созвоне.' },
+      { q: 'Как устроена лицензия?', a: 'Лицензионный ключ выдаётся на проект. Условия обсудим на созвоне.' },
+      { q: 'Сколько это стоит?', a: 'Цена считается от объёма: корпуса, разрабатываемые этажи, состав планов по ТЗ. Тиражируемые этажи бесплатно. Оплата по этапам.' },
+      { q: 'Что нужно от нас для старта?', a: 'EIR и ТЗ заказчика, модель АР и график, ответственный за BIM с вашей стороны.' }
+    ];
+    const faq = FAQ.map((x, i) => ({ q: x.q, a: x.a, open: st.faqOpen === i, sign: st.faqOpen === i ? '−' : '+',
+      toggle: () => self.setState({ faqOpen: self.state.faqOpen === i ? -1 : i }) }));
+
+    const TASKS = ['Отделка и ведомости', 'Развёртки', 'Проверка по EIR', 'Тиражирование этажей', 'Шаблон и BEP', 'Пока не знаю, нужен разбор'];
+    const tasks = TASKS.map(t => {
+      const on = st.tasks.indexOf(t) >= 0;
+      return { label: t, pressed: on ? 'true' : 'false', bg: on ? '#1B1613' : 'transparent', fg: on ? '#F4F4F0' : '#1B1613', border: on ? '#1B1613' : 'rgba(27,22,19,0.24)',
+        pick: () => { const cur = self.state.tasks; self.setState({ err: '', tasks: on ? cur.filter(x => x !== t) : cur.concat([t]) }); } };
+    });
+    const SIZES = ['до 10', '10–30', '30–100', 'больше 100'];
+    const sizes = SIZES.map(z => {
+      const on = st.size === z;
+      return { label: z, pressed: on ? 'true' : 'false', bg: on ? '#1B1613' : 'transparent', fg: on ? '#F4F4F0' : '#1B1613', border: on ? '#1B1613' : 'rgba(27,22,19,0.24)',
+        pick: () => self.setState({ size: z, err: '' }) };
+    });
+
+    const formNext = () => {
+      const s = self.state;
+      if (s.fstep === 1 && s.tasks.length === 0) return self.setState({ err: 'Выберите хотя бы один вариант.' });
+      if (s.fstep === 2 && !s.size) return self.setState({ err: 'Выберите размер бюро.' });
+      if (s.fstep === 3) {
+        if (!s.f.name.trim() || !(s.f.phone.trim() || s.f.tg.trim() || s.f.email.trim())) return self.setState({ err: 'Оставьте имя и хотя бы один контакт: телефон, Telegram или email.' });
+        if (!s.f.consent) return self.setState({ err: 'Нужно согласие на обработку данных.' });
+        self.lead = self.buildLead(roleObj.label); return self.setState({ done: true, err: '' });
+      }
+      self.setState({ fstep: s.fstep + 1, err: '' });
+    };
+
+    const f = st.f;
+    const summary = {
+      role: roleObj.label, tasks: st.tasks.join(', ') || 'задачи не выбраны', size: 'бюро: ' + (st.size || 'не указано') + ' человек',
+      contact: [f.phone, f.tg, f.email, f.company, f.city, f.when].filter(Boolean).join(' · ')
+    };
+
+    return {
+      accent,
+      roles, roleLine: roleObj.line, heroOps, pains, ribbon, op,
+      calcOps, people: st.people, calc,
+      incPeople: () => self.setState({ people: Math.min(200, self.state.people + 1) }),
+      decPeople: () => self.setState({ people: Math.max(1, self.state.people - 1) }),
+      procSteps, procWeeks: !procSteps,
+      procStepsBg: procSteps ? '#1B1613' : 'transparent', procStepsFg: procSteps ? '#F4F4F0' : '#1B1613',
+      procWeeksBg: !procSteps ? '#1B1613' : 'transparent', procWeeksFg: !procSteps ? '#F4F4F0' : '#1B1613',
+      showSteps: () => self.setState({ proc: 'steps' }), showWeeks: () => self.setState({ proc: 'weeks' }),
+      steps, step, weeks,
+      prevStep: () => self.setState({ step: (self.state.step + 7) % 8 }),
+      nextStep: () => self.setState({ step: (self.state.step + 1) % 8 }),
+      caseOn: caseMode !== 'hidden', caseData,
+      priceRows, pilotPrice: showPrices ? ' за [100–150] тыс. ₽' : '',
+      faq,
+      formOpen: !st.done, formDone: st.done,
+      fs0: st.fstep === 0, fs1: st.fstep === 1, fs2: st.fstep === 2, fs3: st.fstep === 3,
+      stepNum: st.fstep + 1, canBack: st.fstep > 0, isFirst: st.fstep === 0,
+      nextLabel: st.fstep === 3 ? 'Записаться →' : 'Дальше →',
+      formDots: [0, 1, 2, 3].map(i => ({ bg: i <= st.fstep ? '#B5401F' : 'rgba(27,22,19,0.14)' })),
+      tasks, sizes, f, summary,
+      formError: !!st.err, formErrorText: st.err,
+      formNext, formBack: () => self.setState({ fstep: Math.max(0, self.state.fstep - 1), err: '' }),
+      formEdit: () => self.setState({ done: false, fstep: 3 }),
+      on_name: e => self.setF('name', e.target.value),
+      on_company: e => self.setF('company', e.target.value),
+      on_when: e => self.setF('when', e.target.value),
+      on_city: e => self.setF('city', e.target.value),
+      on_phone: e => self.setF('phone', e.target.value),
+      on_tg: e => self.setF('tg', e.target.value),
+      on_email: e => self.setF('email', e.target.value),
+      on_dev: e => self.setF('dev', e.target.value),
+      on_revit: e => self.setF('revit', e.target.value),
+      on_req: e => self.setF('req', e.target.value),
+      onConsent: e => self.setF('consent', e.target.checked),
+      stickyOn: sticky && st.scrolled && !st.done
+    };
+  }
+}
+DCLite.mount(Component, document.getElementById('app'), document.getElementById('tpl'), {"accent": "#B5401F", "showPrices": false, "caseMode": "demo", "stickyButton": true, "$preview": null});
+</script>
+</body>
+</html>
