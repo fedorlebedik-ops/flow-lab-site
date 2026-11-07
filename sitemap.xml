@@ -2,10 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://flow-lab.pro/</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-07</lastmod>
   </url>
   <url>
     <loc>https://flow-lab.pro/privacy/</loc>
     <lastmod>2026-11-04</lastmod>
+  </url>
+  <url>
+    <loc>https://flow-lab.pro/kak-rabotaem/</loc>
+    <lastmod>2026-11-07</lastmod>
+  </url>
+  <url>
+    <loc>https://flow-lab.pro/kontakty/</loc>
+    <lastmod>2026-11-07</lastmod>
   </url>
 </urlset>

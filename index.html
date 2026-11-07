@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Flow Lab (Флоу Лаб) — лаборатория автоматизации Revit для архитектурных бюро</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192">
+<link rel="icon" href="/icon-512.png" type="image/png" sizes="512x512">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#17130F">
 <meta name="description" content="Flow Lab (Флоу Лаб) — лаборатория автоматизации Revit для архитектурных бюро: изучаем процесс команды, настраиваем кнопки под EIR девелопера и замеряем время до и после.">
 <link rel="canonical" href="https://flow-lab.pro/">
 <meta property="og:type" content="website">
@@ -23,9 +29,124 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
 .fs-glow{animation:fsBreath 9s ease-in-out infinite alternate}
 @keyframes fsBreath{from{transform:scale(1) translate(0,0);opacity:.92}to{transform:scale(1.12) translate(3%,-2%);opacity:1}}
 @media (prefers-reduced-motion:reduce){.fs-glow{animation:none}html{scroll-behavior:auto}}
-@media (max-width:860px){.fs-links{display:none!important}}
 .lf-frame{height:780px}
 @media (max-width:600px){.lf-frame{height:960px}}
+/* лента Revit 2022 (светлая тема) */
+.rv-win{border-radius:10px;overflow:hidden;background:#F9F9F9;box-shadow:0 30px 80px -40px rgba(60,30,15,.45),0 0 0 1px rgba(27,22,19,.14);font-family:"Segoe UI",Tahoma,Arial,system-ui,sans-serif}
+.rv-title{display:flex;align-items:center;gap:10px;height:30px;padding:0 10px;background:#3B3F45;color:#E8E8E8;font-size:12px}
+.rv-logo{flex:none;width:20px;height:20px;border-radius:3px;background:#1B6FB6;color:#fff;font:700 13px/20px Arial,sans-serif;text-align:center}
+.rv-qat{flex:none;display:flex;gap:6px}.rv-qat i{width:12px;height:12px;border-radius:2px;background:#6A7079}
+.rv-tt{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;margin:0 auto;padding-right:40px;opacity:.9}
+.rv-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.rv-tabs{display:flex;align-items:flex-end;min-width:max-content;height:26px;background:#E9E9E9;border-bottom:1px solid #C9C9C9;font-size:12px;color:#2B2B2B;padding-left:2px}
+.rv-tabs span{padding:4px 10px 5px;white-space:nowrap}
+.rv-tabs .rv-file{background:#1B6FB6;color:#fff;padding:4px 16px 5px;margin-right:2px}
+.rv-tabs .rv-on{background:#F9F9F9;border:1px solid #C9C9C9;border-bottom-color:#F9F9F9;margin-bottom:-1px;font-weight:600;color:#1B1613}
+.rv-ribbon{display:flex;min-width:max-content;background:#F9F9F9;border-bottom:1px solid #C9C9C9}
+.rv-panel{display:flex;flex-direction:column;border-right:1px solid #D4D4D4}
+.rv-body{flex:1;display:flex;align-items:stretch;gap:2px;padding:4px 4px 3px;min-height:88px}
+.rv-big{width:84px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:5px 3px 4px;border:1px solid transparent;border-radius:2px;background:transparent;color:#1E1E1E;font:400 12px/1.2 "Segoe UI",Tahoma,Arial,system-ui,sans-serif;text-align:center;cursor:pointer}
+.rv-big img{display:block;width:32px;height:32px}
+.rv-big:hover{background:#E5F1FB;border-color:#A8D2F2}
+.rv-big[aria-pressed="true"]{background:#CCE4F7;border-color:#6FB0E3}
+.rv-big:focus-visible{outline:1px dotted #1B6FB6;outline-offset:-3px}
+.rv-bigwrap{position:relative;display:flex}
+.rv-stack{display:flex;flex-direction:column;gap:1px;padding:1px 2px}
+.rv-small{display:flex;align-items:center;gap:6px;height:22px;padding:0 6px 0 3px;font:400 12px/1 "Segoe UI",Tahoma,Arial,system-ui,sans-serif;color:#1E1E1E;white-space:nowrap;border:1px solid transparent;border-radius:2px;background:transparent;cursor:pointer;text-align:left;width:100%}
+.rv-small img,.rv-mi img{width:16px;height:16px;flex:none}
+.rv-small:hover,.rv-mi:hover{background:#E5F1FB;border-color:#A8D2F2}
+.rv-small[aria-pressed="true"],.rv-mi[aria-pressed="true"]{background:#CCE4F7;border-color:#6FB0E3}
+.rv-small[aria-expanded="true"],.rv-big[aria-expanded="true"]{background:#CCE4F7;border-color:#6FB0E3}
+.rv-caret{font-size:9px;color:#555;margin-left:2px}
+.rv-big .rv-caret{margin:0;line-height:1}
+.rv-menu{position:absolute;top:100%;left:0;z-index:5;min-width:100%;display:flex;flex-direction:column;padding:3px;background:#FFFFFF;border:1px solid #A9A9A9;box-shadow:2px 3px 8px rgba(0,0,0,.18)}
+.rv-mi{display:flex;align-items:center;gap:8px;height:26px;padding:0 14px 0 6px;font:400 12px/1 "Segoe UI",Tahoma,Arial,system-ui,sans-serif;color:#1E1E1E;white-space:nowrap;border:1px solid transparent;border-radius:2px;background:transparent;cursor:pointer;text-align:left}
+.rv-out{display:flex;align-items:flex-start;gap:20px;padding:clamp(22px,3.6vw,40px);background:#EDE8E2;border-top:1px solid rgba(27,22,19,.1);font-family:'Onest',system-ui,sans-serif}
+.rv-out>img{flex:none;width:48px;height:48px}
+.rv-scroll{transition:padding-bottom .2s ease;background:#EDE8E2}
+.rv-ptitle{height:20px;display:flex;align-items:center;justify-content:center;padding:0 10px;background:#EBEBEB;border-top:1px solid #DADADA;font-size:11px;color:#3C3C3C;white-space:nowrap}
+/* тихие картинки под заголовками */
+.q-fig{margin:36px 0 0 76px;max-width:220px;display:flex;flex-direction:column;gap:10px}
+.q-img{overflow:hidden;border-radius:3px;aspect-ratio:4/5;background:#E4DDD5}
+.q-img img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.8) contrast(.95);opacity:.88;transform:scale(1.08)}
+.q-fig figcaption{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#8C7F74}
+@supports (animation-timeline: view()){
+  .q-img img{animation:qPar linear both;animation-timeline:view()}
+  .q-fig{animation:qIn linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+}
+@keyframes qPar{from{transform:translateY(-5%) scale(1.1)}to{transform:translateY(5%) scale(1.1)}}
+@keyframes qIn{from{opacity:.25}to{opacity:1}}
+.q-fig--aside{margin:22px 0 0;max-width:240px}
+.q-fig--proc{margin:0 0 0 auto;flex:none;width:220px;align-self:flex-start}
+.q-fig--card{position:absolute;right:clamp(28px,4vw,52px);top:50%;transform:translateY(-50%);margin:0;width:300px;max-width:none}
+.q-fig--card .q-img{aspect-ratio:3/2;background:#2A231E}
+.q-fig--card .q-img img{opacity:.8}
+@media (max-width:1100px){.q-fig--card{display:none}}
+@media (max-width:700px){.q-fig{display:none}}
+/* фон первого экрана: ролик, под ним постер */
+.hero-bg{position:absolute;left:0;right:0;top:0;height:100vh;height:100svh;max-height:100%;pointer-events:none;background:#1B1613 center/cover no-repeat}
+.hero-bg.is-still{background-image:url(video/flow_hero_full.jpg)}
+.hero-bg.is-still.no-vid .hero-vid{display:none}
+.hero-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(27,22,19,.55) 0%,rgba(27,22,19,.25) 50%,rgba(27,22,19,0) 75%),linear-gradient(0deg,#1B1613 0%,rgba(27,22,19,.6) 18%,rgba(27,22,19,0) 45%)}
+header .fs-glow{opacity:.3}
+@media (max-width:700px){.hero-scrim{background:linear-gradient(0deg,#1B1613 0%,rgba(27,22,19,.7) 30%,rgba(27,22,19,.62) 100%)}}
+@media (prefers-reduced-motion:reduce){.hero-vid{display:none}.hero-bg{background-image:url(video/flow_hero_full.jpg)}}
+@media (prefers-reduced-motion:reduce){.q-img img,.q-fig{animation:none}}
+/* объём: список блоков */
+.pr-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr;gap:10px}
+.pr-list li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;padding:20px 22px;border-radius:14px;background:#FBFAF7;box-shadow:0 0 0 1px rgba(27,22,19,.08);font-size:17px;line-height:1.35}
+.pr-plus{flex:none;font-weight:600;font-size:20px;line-height:1}
+.pr-name{flex:1 1 0;min-width:0}
+.pr-price{flex:1 1 100%;padding-left:24px;font-size:15px;font-weight:600}
+/* липкая кнопка: компактная, не закрывает текст */
+.cta-sticky{position:fixed;z-index:50;right:max(20px,env(safe-area-inset-right,0px));bottom:max(20px,env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 18px 0 20px;border-radius:999px;
+  background:rgba(27,22,19,.92);color:#F4F4F0;text-decoration:none;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  box-shadow:0 10px 30px -12px rgba(27,22,19,.6),0 0 0 1px rgba(232,160,106,.35);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:ctaIn .35s ease both}
+.cta-sticky span{color:#E8A06A;transition:transform .2s ease}
+.cta-sticky:hover{color:#F4F4F0;background:#1B1613}.cta-sticky:hover span{transform:translateX(3px)}
+@keyframes ctaIn{from{opacity:0;transform:translateY(8px)}}
+@media (max-width:600px){.cta-sticky{left:max(16px,env(safe-area-inset-left,0px));right:max(16px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));justify-content:center;height:48px}
+  footer{padding-bottom:72px}}
+@media (prefers-reduced-motion:reduce){.cta-sticky{animation:none}}
+/* ===== заставка Flow Lab (один показ, ~7,6 с) ===== */
+.fl-intro{position:fixed;inset:0;z-index:1000;overflow:hidden;pointer-events:none;container-type:size;--ease:cubic-bezier(.45,.05,.35,1)}
+.fl-intro__paper{position:absolute;inset:0;background:#F4F4F0;animation:flFade 1.69s var(--ease) 5.26s both}
+.fl-intro__cloud{position:absolute;border-radius:50%;will-change:transform,opacity;background:radial-gradient(closest-side,rgba(244,244,240,1) 0%,rgba(244,244,240,.95) 40%,rgba(244,244,240,.6) 66%,rgba(244,244,240,0) 100%);animation:flDrift 2.44s var(--ease) 5.17s both}
+.fl-intro__in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 7%;animation:flMist 1.79s var(--ease) 5.17s both}
+.fl-intro__h{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-style:italic;font-weight:500;color:#1B1613;font-size:clamp(40px,8.4cqw,104px);line-height:1.04;letter-spacing:-.005em;text-wrap:balance;animation:flIn 1.5s var(--ease) 1.41s both}
+.fl-intro__s{margin:.9em 0 0;font-family:Onest,system-ui,sans-serif;font-weight:400;color:#5E544D;font-size:clamp(15px,2.1cqw,24px);letter-spacing:.01em;animation:flIn 1.22s var(--ease) 3.67s both}
+.fl-intro__s b{font-weight:600;color:#B5401F}
+.fl-intro__skip{pointer-events:auto;position:absolute;z-index:2;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));font:500 13px Onest,system-ui,sans-serif;color:#5E544D;background:rgba(244,244,240,.7);border:1px solid #C9C4BE;border-radius:999px;padding:7px 15px;cursor:pointer;animation:flFade .94s var(--ease) 5.17s both}
+.fl-intro__skip:hover{color:#1B1613;border-color:#1B1613}
+.fl-intro.is-skip{animation:flFade .7s var(--ease) both}
+@keyframes flIn{from{opacity:0;filter:blur(8px);transform:translateY(8px)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes flMist{from{opacity:1;filter:blur(0);transform:scale(1)}to{opacity:0;filter:blur(16px);transform:scale(1.06)}}
+@keyframes flDrift{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(1.35)}}
+@keyframes flFade{to{opacity:0;visibility:hidden}}
+/* верхнее меню (общее для всех страниц) */
+.fl-nav{position:relative;z-index:5;max-width:1200px;margin:0 auto;padding:24px clamp(16px,4vw,48px);box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.fl-logo{color:#F4F4F0;text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.22em;text-transform:uppercase;white-space:nowrap}
+.fl-links{display:flex;gap:26px;align-items:center;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.fl-links a{color:rgba(244,244,240,.78);text-decoration:none;white-space:nowrap}
+.fl-links a:hover,.fl-links a[aria-current="page"]{color:#F4F4F0}
+.fl-links a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-color:#E8A06A}
+.fl-right{display:flex;align-items:center;gap:10px}
+.fl-call{color:#1B1613;background:#F4F4F0;text-decoration:none;font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:13px 20px;border-radius:999px;white-space:nowrap}
+.fl-call:hover{color:#1B1613;background:#fff}
+.fl-menu-btn{display:none;min-height:44px;padding:0 18px;border-radius:999px;border:1px solid rgba(244,244,240,.4);background:transparent;color:#F4F4F0;font:600 13px 'Onest',system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.fl-menu{display:none;position:fixed;inset:0;z-index:900;background:#1B1613;color:#F4F4F0;overflow-y:auto;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(32px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-sizing:border-box;flex-direction:column;gap:28px}
+.fl-menu::before{content:"";position:absolute;left:-30%;bottom:-40%;width:120%;height:90%;border-radius:50%;background:radial-gradient(closest-side,rgba(240,120,47,.55),rgba(196,66,30,.2) 55%,rgba(27,22,19,0));pointer-events:none}
+html.fl-menu-open{overflow:hidden}
+html.fl-menu-open .fl-menu{display:flex}
+.fl-menu__top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.fl-menu__list{position:relative;display:flex;flex-direction:column;margin-top:12px}
+.fl-menu__list a{color:#F4F4F0;text-decoration:none;font-size:clamp(24px,7vw,34px);font-weight:600;text-transform:uppercase;letter-spacing:.01em;padding:14px 0;border-top:1px solid rgba(244,244,240,.18)}
+.fl-menu__list a[aria-current="page"]{color:#E8A06A}
+.fl-menu .fl-call{position:relative;align-self:flex-start;padding:16px 24px;font-size:14px}
+.fl-menu__note{position:relative;margin:auto 0 0;font-size:14px;color:rgba(244,244,240,.7)}
+@media (max-width:1100px){.fl-links{display:none}.fl-menu-btn{display:inline-flex;align-items:center}}
+@media (max-width:560px){.fl-nav .fl-call{display:none}}
 </style>
 </head>
 <body>
@@ -36,19 +157,20 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
 
 <!-- ═══════════ HERO ═══════════ -->
 <header style="position: relative; overflow: hidden; background: #1B1613; color: #F4F4F0">
+  <div class="hero-bg" aria-hidden="true">
+    <video class="hero-vid" autoplay muted playsinline preload="auto" disablepictureinpicture disableremoteplayback tabindex="-1">
+      <source src="video/flow_hero_full.webm" type="video/webm">
+      <source src="video/flow_hero_full.mp4" type="video/mp4">
+    </video>
+    <div class="hero-scrim"></div>
+  </div>
   <div class="fs-glow" aria-hidden="true" style="position: absolute; left: -18%; bottom: -55%; width: 95%; height: 140%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 32%, rgba(140,40,14,0.55) 60%, rgba(27,22,19,0) 100%); filter: blur(10px); pointer-events: none"></div>
   <div class="fs-glow" aria-hidden="true" style="position: absolute; right: -20%; top: -40%; width: 60%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, rgba(232,160,106,0.35) 0%, rgba(196,66,30,0.18) 45%, rgba(27,22,19,0) 100%); pointer-events: none"></div>
 
-  <nav aria-label="Главное меню" style="position: relative; max-width: 1200px; margin: 0 auto; padding: 24px clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 24px">
-    <a href="#top" style="color: #F4F4F0; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.22em; text-transform: uppercase">Flow&#160;Lab</a>
-    <div class="fs-links" style="display: flex; gap: 28px; align-items: center; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase">
-      <a href="#buttons" style="color: rgba(244,244,240,0.78); text-decoration: none">Кнопки</a>
-      <a href="#calc" style="color: rgba(244,244,240,0.78); text-decoration: none">Калькулятор</a>
-      <a href="#process" style="color: rgba(244,244,240,0.78); text-decoration: none">Процесс</a>
-      <a href="#price" style="color: rgba(244,244,240,0.78); text-decoration: none">Стоимость</a>
-      <a href="#faq" style="color: rgba(244,244,240,0.78); text-decoration: none">Вопросы</a>
-    </div>
-    <a href="#form" style="color: #1B1613; background: #F4F4F0; text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 13px 20px; border-radius: 999px; white-space: nowrap">Созвон →</a>
+  <nav class="fl-nav" aria-label="Главное меню">
+    <a class="fl-logo" href="#top">Flow&#160;Lab</a>
+    <div class="fl-links"><a href="#buttons">Что автоматизируем</a><a href="/kak-rabotaem/">Как мы работаем</a><a href="#price">Стоимость</a><a href="#faq">Вопросы</a><a href="/kontakty/">Контакты</a></div>
+    <div class="fl-right"><a class="fl-call" href="#form">Записаться на&#160;созвон</a><button type="button" class="fl-menu-btn" data-fl-menu="open" aria-controls="fl-menu" aria-expanded="false">Меню</button></div>
   </nav>
 
   <div id="top" style="position: relative; max-width: 1200px; margin: 0 auto; padding: clamp(48px, 9vw, 120px) clamp(16px, 4vw, 48px) clamp(64px, 10vw, 140px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end">
@@ -87,20 +209,24 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
           <span style="white-space: nowrap; font-size: 15px; font-weight: 500"><span style="color: rgba(244,244,240,0.6)">{{o.manualTxt}}</span> <span style="color: #E8A06A">→ {{o.btnTxt}}</span></span>
         </div>
       </sc-for>
+      <p style="margin: 2px 0 0; padding-top: 12px; border-top: 1px solid rgba(244,244,240,0.22); font-size: 12px; line-height: 1.4; color: rgba(244,244,240,0.6)">Оценка. Точнее замеряем на&#160;вашем объекте</p>
     </div>
   </div>
 </header>
 
 <!-- ═══════════ КОРОТКО О ГЛАВНОМ ═══════════ -->
 <section aria-labelledby="sum-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px">
-  <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 20px">
+  <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: flex-start; gap: 20px">
     <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 18px"></span>
     <h2 id="sum-h" style="margin: 0; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Коротко о&#160;главном →</h2>
+    </div>
+    <figure class="q-fig" aria-hidden="true"><div class="q-img"><img src="img/quiet_plan.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
   </div>
   <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5">
-    <p style="margin: 0">Девелоперы требуют модель по&#160;своему EIR: коды, параметры, рабочие наборы, оформление по&#160;ГОСТ. Модель проверяют до&#160;приёмки комплекта.</p>
-    <p style="margin: 0">Корпуса растут до&#160;60 этажей. Эталонный этаж оформляют один раз, а&#160;потом его нужно повторить на&#160;десятках этажей без ошибок. Команда тратит недели на&#160;перекладывание параметров вместо проекта.</p>
-    <p style="margin: 0; color: {{accent}}; font-weight: 500">Мы настраиваем шаблон и&#160;BEP под ваш EIR, ставим кнопки на&#160;все планы АИ и&#160;ведём модель до&#160;сдачи.</p>
+    <p style="margin: 0">Девелоперы проверяют модель по&#160;своему EIR ещё до&#160;приёмки комплекта.</p>
+    <p style="margin: 0">Эталонный этаж нужно без ошибок повторить на&#160;десятках этажей, и&#160;на&#160;это уходят недели.</p>
+    <p style="margin: 0; color: {{accent}}; font-weight: 500">Мы настраиваем шаблон и&#160;BEP под ваш EIR, ставим кнопки на&#160;планы АИ и&#160;ведём модель до&#160;сдачи.</p>
   </div>
 </section>
 
@@ -141,67 +267,84 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
       <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
       <h2 id="rib-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Вкладка Flow в&#160;вашем Revit</h2>
     </div>
-    <p style="margin: 0; max-width: 420px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Нажмите на&#160;кнопку на&#160;ленте и&#160;посмотрите, сколько времени она забирает на&#160;себя.</p>
+    <p style="margin: 0; max-width: 520px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Пример вкладки из&#160;нашей работы. Нажмите на&#160;кнопку и&#160;посмотрите, какую рутину она берёт на&#160;себя.</p>
   </div>
 
-  <!-- макет окна -->
-  <div style="border-radius: 14px; overflow: hidden; background: #F4F4F0; box-shadow: 0 30px 80px -40px rgba(60,30,15,0.45), 0 0 0 1px rgba(27,22,19,0.1)">
-    <div style="display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: #2A221D; color: rgba(244,244,240,0.75); font-size: 12px">
-      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #C4421E"></span>
-      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #E8A06A"></span>
-      <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 50%; background: #8C7F74"></span>
-      <span style="margin-left: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Autodesk Revit · Демо-модель.rvt · План 3 этажа</span>
+  <!-- макет окна: Revit 2022, светлая тема; вкладка Flow -->
+  <div class="rv-win">
+    <div class="rv-title">
+      <span class="rv-logo" aria-hidden="true">R</span>
+      <span class="rv-qat" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="rv-tt">Autodesk Revit 2022 · Демо-модель.rvt · План этажа: 3 этаж</span>
     </div>
-    <div style="overflow-x: auto; background: #E4DDD5; border-bottom: 1px solid rgba(27,22,19,0.12)">
-      <div style="display: flex; gap: 2px; padding: 0 10px; font-size: 13px; white-space: nowrap; min-width: max-content">
-        <span style="padding: 10px 14px; color: #6F645B">Архитектура</span>
-        <span style="padding: 10px 14px; color: #6F645B">Вставка</span>
-        <span style="padding: 10px 14px; color: #6F645B">Аннотации</span>
-        <span style="padding: 10px 14px; color: #6F645B">Вид</span>
-        <span style="padding: 10px 14px; color: #6F645B">Управление</span>
-        <span style="padding: 10px 16px; background: #F4F4F0; color: {{accent}}; font-weight: 600; border-radius: 8px 8px 0 0; box-shadow: inset 0 2px 0 {{accent}}">Flow</span>
+    <div class="rv-scroll" style="padding-bottom: {{rvPad}}">
+      <div class="rv-tabs" aria-hidden="true">
+        <span class="rv-file">Файл</span>
+        <sc-for list="{{rvTabs}}" as="t"><span>{{t}}</span></sc-for>
+        <span class="rv-on">Flow</span>
       </div>
-    </div>
-    <div style="overflow-x: auto; background: #F4F4F0">
-      <div role="toolbar" aria-label="Кнопки Flow" style="display: flex; gap: 8px; padding: 14px 14px 10px; min-width: max-content">
-        <sc-for list="{{ribbon}}" as="b" hint-placeholder-count="5">
-          <button type="button" onClick="{{b.pick}}" aria-pressed="{{b.pressed}}" style="width: 112px; min-height: 96px; padding: 12px 8px 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; border-radius: 10px; border: 1px solid {{b.border}}; background: {{b.bg}}; color: #1B1613; cursor: pointer; font-size: 12px; line-height: 1.25; text-align: center">
-            <span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; background: {{b.iconBg}}; color: {{b.iconFg}}">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="{{b.icon}}"></path></svg>
-            </span>
-            <span>{{b.label}}</span>
-          </button>
+      <div class="rv-ribbon" role="toolbar" aria-label="Вкладка Flow">
+        <sc-for list="{{rvPanels}}" as="pn">
+          <div class="rv-panel">
+            <div class="rv-body">
+              <sc-for list="{{pn.cols}}" as="c">
+                <sc-if value="{{c.isBig}}">
+                  <div class="rv-bigwrap">
+                    <button type="button" class="rv-big" onClick="{{c.b.pick}}" aria-pressed="{{c.b.pressed}}" aria-expanded="{{c.b.expanded}}">
+                      <img src="{{c.b.img}}" width="32" height="32" alt="">
+                      <span>{{c.b.label}}</span>
+                      <sc-if value="{{c.b.isDrop}}"><span class="rv-caret" aria-hidden="true">▾</span></sc-if>
+                    </button>
+                    <sc-if value="{{c.b.open}}">
+                      <div class="rv-menu" role="menu">
+                        <sc-for list="{{c.b.items}}" as="it">
+                          <button type="button" role="menuitem" class="rv-mi" onClick="{{it.pick}}" aria-pressed="{{it.pressed}}"><img src="{{it.img}}" width="16" height="16" alt="">{{it.label}}</button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-if>
+                <sc-if value="{{c.isStack}}">
+                  <div class="rv-stack">
+                    <sc-for list="{{c.items}}" as="m">
+                      <div class="rv-bigwrap">
+                        <button type="button" class="rv-small" onClick="{{m.pick}}" aria-pressed="{{m.pressed}}" aria-expanded="{{m.expanded}}"><img src="{{m.img}}" width="16" height="16" alt="">{{m.label}}<sc-if value="{{m.isDrop}}"><span class="rv-caret" aria-hidden="true">▾</span></sc-if></button>
+                        <sc-if value="{{m.open}}">
+                          <div class="rv-menu" role="menu">
+                            <sc-for list="{{m.items}}" as="it">
+                              <button type="button" role="menuitem" class="rv-mi" onClick="{{it.pick}}" aria-pressed="{{it.pressed}}"><img src="{{it.img}}" width="16" height="16" alt="">{{it.label}}</button>
+                            </sc-for>
+                          </div>
+                        </sc-if>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+              </sc-for>
+            </div>
+            <div class="rv-ptitle">{{pn.title}}</div>
+          </div>
         </sc-for>
-      </div>
-      <div style="display: flex; gap: 8px; padding: 0 14px 10px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #6F645B; min-width: max-content">
-        <span style="width: 232px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Отделка</span>
-        <span style="width: 112px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Ведомости</span>
-        <span style="width: 112px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Проверка</span>
-        <span style="width: 112px; text-align: center; border-top: 1px solid rgba(27,22,19,0.14); padding-top: 6px">Этажи</span>
       </div>
     </div>
 
     <!-- результат нажатия -->
-    <div style="display: flex; flex-wrap: wrap; gap: 32px 48px; padding: clamp(24px, 4vw, 44px); background: #EDE8E2; border-top: 1px solid rgba(27,22,19,0.1)">
-      <div style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Кнопка «{{op.label}}»</p>
-        <h3 style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.15">{{op.name}}</h3>
-        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: #5E544D">{{op.desc}}</p>
-      </div>
-      <div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px; justify-content: center">
-        <div style="display: flex; flex-direction: column; gap: 8px">
-          <div style="display: flex; justify-content: space-between; font-size: 14px"><span>Вручную</span><span style="font-weight: 600">{{op.manualTxt}}</span></div>
-          <div style="height: 14px; border-radius: 999px; background: rgba(27,22,19,0.08); overflow: hidden"><div style="height: 100%; width: 100%; border-radius: 999px; background: #8C7F74"></div></div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 8px">
-          <div style="display: flex; justify-content: space-between; font-size: 14px"><span>Кнопкой</span><span style="font-weight: 600; color: {{accent}}">{{op.btnTxt}}</span></div>
-          <div style="height: 14px; border-radius: 999px; background: rgba(27,22,19,0.08); overflow: hidden"><div style="height: 100%; width: {{op.btnPct}}; min-width: 14px; border-radius: 999px; background: {{accent}}; transition: width .5s ease"></div></div>
-        </div>
-        <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 26px; color: #1B1613">в&#160;{{op.ratio}} раз быстрее</p>
+    <div class="rv-out" aria-live="polite">
+      <img src="{{rvCur.img}}" width="48" height="48" alt="">
+      <div style="min-width: 0; display: flex; flex-direction: column; gap: 8px">
+        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">{{rvCur.panel}}</p>
+        <h3 style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.15">{{rvCur.label}}</h3>
+        <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.25; color: #1B1613">{{rvCur.phrase}}</p>
       </div>
     </div>
   </div>
-  <p style="margin: 0; font-size: 13px; color: #6F645B">Макет нарисован для сайта, модель демонстрационная. Время операций из&#160;нашего коммерческого предложения.</p>
+  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px; padding: clamp(24px, 3.4vw, 40px); border-radius: 16px; background: #F4F4F0; border-left: 4px solid {{accent}}">
+    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+      <p style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.15; color: {{accent}}">Ваши кнопки будут другими</p>
+      <p style="margin: 0; max-width: 680px; font-size: 17px; line-height: 1.55; color: #3A302A">Кнопки пишем под ваш проект: ваш EIR, стандарты бюро и&#160;задачи, на&#160;которые уходит время именно у&#160;вашей команды. Выше пример того, что мы делали для раздела АИ. Другой раздел, другая рутина: кнопки соберём под&#160;неё.</p>
+    </div>
+    <a href="#form" style="flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; background: {{accent}}; color: #F4F4F0; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">Разобрать мой проект <span aria-hidden="true">→</span></a>
+  </div>
 </section>
 
 <!-- ═══════════ ЧТО ВХОДИТ ═══════════ -->
@@ -212,8 +355,9 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
     <div style="position: relative; max-width: 640px; display: flex; flex-direction: column; gap: 14px">
       <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">Основа продукта</p>
       <p style="margin: 0; font-size: clamp(26px, 3.2vw, 40px); font-weight: 600; line-height: 1.1">Кнопки на&#160;все планы раздела АИ</p>
-      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(244,244,240,0.85)">Отделка, полы, потолки, плинтусы и&#160;профили, мебель, двери и&#160;люки, свет, развёртки, ведомости, листы, тиражирование этажей, самопроверка EIR. Именно они сокращают часы.</p>
+      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(244,244,240,0.85)">Отделка, полы, потолки, плинтусы, профили, мебель, двери, свет, ведомости, листы, тиражирование этажей, самопроверка EIR. </p>
     </div>
+    <figure class="q-fig q-fig--card" aria-hidden="true"><div class="q-img"><img src="img/quiet_materials.jpg" alt="" loading="lazy" decoding="async" width="900" height="600"></div></figure>
   </div>
   <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
     <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
@@ -329,6 +473,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
             <button type="button" onClick="{{nextStep}}" aria-label="Следующий шаг" style="width: 48px; height: 48px; border-radius: 50%; border: 0; background: #1B1613; color: #F4F4F0; font-size: 18px; cursor: pointer">→</button>
           </div>
         </div>
+        <figure class="q-fig q-fig--proc" aria-hidden="true"><div class="q-img"><img src="img/quiet_gallery.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
       </div>
     </div>
   </sc-if>
@@ -394,19 +539,19 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
   </div>
 
   <div style="display: flex; flex-wrap: wrap; gap: 28px">
-    <div style="flex: 999 1 560px; min-width: 0; border-radius: 16px; overflow: hidden; background: #FBFAF7; box-shadow: 0 0 0 1px rgba(27,22,19,0.08)">
-      <div style="display: flex; justify-content: space-between; gap: 16px; padding: 14px 22px; background: #E4DDD5; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5E544D"><span>Блок</span><span>Цена</span></div>
-      <sc-for list="{{priceRows}}" as="pr" hint-placeholder-count="5">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 22px; border-top: 1px solid rgba(27,22,19,0.08)">
-          <span style="font-size: 16px; line-height: 1.4">{{pr.name}}</span>
-          <span style="flex: none; font-size: 16px; font-weight: 600; color: {{pr.color}}">{{pr.price}}</span>
-        </div>
-      </sc-for>
+    <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E544D">Из чего складывается объём</p>
+      <ul class="pr-list">
+        <sc-for list="{{priceRows}}" as="pr" hint-placeholder-count="5">
+          <li><span class="pr-plus" style="color: {{accent}}">+</span><span class="pr-name">{{pr.name}}</span><sc-if value="{{pr.hasPrice}}"><span class="pr-price" style="color: {{pr.color}}">{{pr.price}}</span></sc-if></li>
+        </sc-for>
+      </ul>
     </div>
     <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.55">
       <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 26px; line-height: 1.2">Как фиксируем цену</p>
-      <p style="margin: 0; color: #5E544D">Цена считается от&#160;объёма: корпуса, разрабатываемые этажи, состав планов по&#160;ТЗ. Тиражируемые этажи бесплатно.</p>
+      <p style="margin: 0; color: #5E544D">Цену называем, когда получим исходные данные: EIR, ТЗ, модель АР, число корпусов и&#160;этажей. Тиражируемые этажи бесплатно.</p>
       <p style="margin: 0; color: #5E544D">Оплата по&#160;этапам: шаблон и&#160;BEP, затем кнопки, затем ведение помесячно.</p>
+      <figure class="q-fig q-fig--aside" aria-hidden="true"><div class="q-img"><img src="img/quiet_drafting.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
     </div>
   </div>
 
@@ -414,11 +559,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
     <div style="padding: 30px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 10px">
       <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Пилот без риска</p>
       <p style="margin: 0; font-size: 17px; line-height: 1.55">Начинаем с&#160;одного корпуса или эталонного этажа{{pilotPrice}}. Замеряем экономию на&#160;вашем объекте. Пилот засчитывается в&#160;проект.</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E544D">Нет оговорённой экономии: возвращаем деньги или доделываем бесплатно.</p>
     </div>
     <div style="padding: 30px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 10px">
       <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Простая математика</p>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55">Часы экономии × стоимость часа вашего сотрудника. Свои часы можно прикинуть в&#160;<a href="#calc" style="color: {{accent}}">калькуляторе</a>, остальное посчитаем вместе на&#160;созвоне.</p>
+      <p style="margin: 0; font-size: 17px; line-height: 1.55">Часы экономии × стоимость часа сотрудника. Прикиньте в&#160;<a href="#calc" style="color: {{accent}}">калькуляторе</a>, точнее посчитаем на&#160;созвоне.</p>
     </div>
   </div>
 </section>
@@ -451,9 +595,12 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
 
 <!-- ═══════════ FAQ ═══════════ -->
 <section id="faq" aria-labelledby="faq-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 64px">
-  <div style="flex: 1 1 280px; display: flex; align-items: flex-start; gap: 20px">
+  <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: flex-start; gap: 20px">
     <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 18px"></span>
     <h2 id="faq-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Частые вопросы</h2>
+    </div>
+    <figure class="q-fig" aria-hidden="true"><div class="q-img"><img src="img/quiet_desk.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
   </div>
   <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
     <sc-for list="{{faq}}" as="q" hint-placeholder-count="7">
@@ -570,9 +717,16 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #E8A0
   </div>
 </footer>
 
+<div id="fl-menu" class="fl-menu" role="dialog" aria-modal="true" aria-label="Меню">
+  <div class="fl-menu__top"><a class="fl-logo" href="#top" data-fl-menu="close">Flow&#160;Lab</a><button type="button" class="fl-menu-btn" style="display:inline-flex;align-items:center" data-fl-menu="close">Закрыть</button></div>
+  <div class="fl-menu__list"><a href="#buttons" data-fl-menu="close">Что автоматизируем</a><a href="/kak-rabotaem/" data-fl-menu="close">Как мы работаем</a><a href="#price" data-fl-menu="close">Стоимость</a><a href="#faq" data-fl-menu="close">Вопросы</a><a href="/kontakty/" data-fl-menu="close">Контакты</a></div>
+  <a class="fl-call" href="#form" data-fl-menu="close">Записаться на&#160;созвон →</a>
+  <p class="fl-menu__note">Telegram @F_Lebedik · +7&#160;950&#160;033-70-66</p>
+</div>
+
 <!-- липкая кнопка -->
 <sc-if value="{{stickyOn}}" hint-placeholder-val="{{false}}">
-  <a href="#form" style="position: fixed; right: 16px; bottom: 16px; z-index: 50; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px; border-radius: 999px; background: #E8A06A; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: 0 14px 40px -12px rgba(27,22,19,0.55)">Записаться на&#160;созвон →</a>
+  <a href="#form" class="cta-sticky">Записаться на&#160;созвон <span aria-hidden="true">→</span></a>
 </sc-if>
 
 </div>
@@ -707,7 +861,7 @@ class Component extends DCLogic {
     super(props);
     this.state = {
       role: 'gendir', op: 'floor', counts: { room: 20, unfold: 6, furn: 2, eir: 4, floor: 2 }, people: 5,
-      proc: 'steps', step: 0, faqOpen: 0, scrolled: false,
+      proc: 'steps', step: 0, faqOpen: 0, scrolled: false, rvSel: 'Проект - Обновить проект', rvOpen: '',
       fstep: 0, done: false, err: '',
       f: { name: '', phone: '', via: 'telegram', email: '', req: '', consent: false }, tasks: [], size: ''
     };
@@ -717,7 +871,63 @@ class Component extends DCLogic {
       if (s !== this.state.scrolled) this.setState({ scrolled: s });
     };
   }
+  // Заставка: один раз на посетителя, не показываем при «уменьшить движение». Текст сайта остаётся в HTML под ней.
+  runIntro() {
+    try {
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      if (window.localStorage.getItem('flowlab-intro-v1')) return;
+      window.localStorage.setItem('flowlab-intro-v1', '1');
+    } catch (e) { return; }
+    const N = [[-10,-15],[30,-20],[70,-15],[-15,25],[25,20],[60,25],[95,15],[-5,65],[35,62],[72,68],[100,60],[15,95],[55,98],[90,95]];
+    let cl = '';
+    N.forEach(([x, y], i) => {
+      const w = 55 + ((i * 37) % 25), dx = (x + w / 2 - 50) * 0.9, dy = (y + w / 2 - 50) * 0.9, d = (i % 5) * 0.113;
+      cl += '<div class="fl-intro__cloud" style="left:' + (x - 8) + '%;top:' + (y - 8) + '%;width:' + w + '%;aspect-ratio:1.5;--dx:' + dx.toFixed(0) + '%;--dy:' + dy.toFixed(0) + '%;animation-delay:' + (5.17 + d).toFixed(2) + 's"></div>';
+    });
+    const o = document.createElement('div');
+    o.className = 'fl-intro'; o.setAttribute('role', 'presentation');
+    o.innerHTML = '<div class="fl-intro__paper"></div>' + cl + '<div class="fl-intro__in"><p class="fl-intro__h">Чувствуете, как свободно?</p><p class="fl-intro__s">Так ощущается работа с <b>Flow&#160;Lab</b>.</p></div><button class="fl-intro__skip" type="button">Пропустить</button>';
+    document.body.appendChild(o);
+    const html = document.documentElement, prevOv = html.style.overflow;
+    html.style.overflow = 'hidden';
+    let gone = false;
+    const end = () => { if (gone) return; gone = true; o.remove(); html.style.overflow = prevOv; window.removeEventListener('keydown', onKey); window.dispatchEvent(new Event('flowlab-intro-end')); };
+    const skip = () => { if (!gone) o.classList.add('is-skip'); };
+    const onKey = e => { if (e.key === 'Escape') skip(); };
+    window.addEventListener('keydown', onKey);
+    o.querySelector('.fl-intro__skip').addEventListener('click', skip);
+    o.addEventListener('animationend', e => { if (e.target === o && e.animationName === 'flFade') end(); });
+    setTimeout(end, 7800);
+  }
   componentDidMount() {
+    this.runIntro();
+    // меню на телефоне: класс на <html>, без перерисовки шаблона
+    this.onMenu = e => {
+      const t = e.target.closest && e.target.closest('[data-fl-menu]'); if (!t) return;
+      const open = t.getAttribute('data-fl-menu') === 'open';
+      document.documentElement.classList.toggle('fl-menu-open', open);
+      document.querySelectorAll('[data-fl-menu="open"]').forEach(b => b.setAttribute('aria-expanded', open ? 'true' : 'false'));
+    };
+    this.onMenuKey = e => { if (e.key === 'Escape') document.documentElement.classList.remove('fl-menu-open'); };
+    document.addEventListener('click', this.onMenu); document.addEventListener('keydown', this.onMenuKey);
+    // фон первого экрана: без звука; при «уменьшить движение» только постер; если не стартует, остаётся постер
+    // фон первого экрана: играет один раз и замирает на последнем кадре; перемотки нет, только обновлением страницы.
+    // При «уменьшить движение» и если видео не стартует, вместо него этот же последний кадр картинкой.
+    const hv = document.querySelector('.hero-vid'), hb = document.querySelector('.hero-bg');
+    if (hv && hb) {
+      hv.muted = true; hv.loop = false; hv.controls = false;
+      const still = noVid => { hb.classList.add('is-still'); if (noVid) { hb.classList.add('no-vid'); try { hv.pause(); hv.removeAttribute('src'); } catch (e) {} } };
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { hv.removeAttribute('autoplay'); hv.preload = 'none'; still(true); }
+      else {
+        hv.addEventListener('ended', () => still(false));
+        hv.addEventListener('error', () => still(true));
+        const last = hv.querySelector('source:last-of-type'); if (last) last.addEventListener('error', () => still(true));
+        const go = () => { const pr = hv.play(); if (pr && pr.catch) pr.catch(() => still(true)); };
+        // пока идёт заставка, ролик ждёт и стартует сразу после неё
+        if (document.querySelector('.fl-intro')) { hv.removeAttribute('autoplay'); hv.pause(); window.addEventListener('flowlab-intro-end', go, { once: true }); }
+        else go();
+      }
+    }
     try {
       const raw = window.localStorage.getItem('flowlab-form-v2');
       if (raw) {
@@ -737,6 +947,16 @@ class Component extends DCLogic {
   }
   componentWillUnmount() { window.removeEventListener('scroll', this.onScroll); window.removeEventListener('message', this.onMsg); }
   componentDidUpdate() {
+    // открытый список ленты целиком в кадре: прокручиваем ленту вбок, если он ушёл за край
+    if (this.state.rvOpen && this.state.rvOpen !== this._rvShown) {
+      const sc = document.querySelector('.rv-scroll'), mn = sc && sc.querySelector('.rv-menu');
+      if (sc && mn) {
+        const r = mn.getBoundingClientRect(), rs = sc.getBoundingClientRect();
+        if (r.right > rs.right) sc.scrollLeft += r.right - rs.right + 8;
+        else if (r.left < rs.left) sc.scrollLeft -= rs.left - r.left + 8;
+      }
+    }
+    this._rvShown = this.state.rvOpen;
     try {
       window.localStorage.setItem('flowlab-form-v2', JSON.stringify({ role: this.state.role, tasks: this.state.tasks, size: this.state.size, f: this.state.f }));
     } catch (e) {}
@@ -788,9 +1008,9 @@ class Component extends DCLogic {
     ];
 
     const ROLES = [
-      { id: 'gendir', label: 'Гендир / развитие', line: 'Сроки РД не двигаются, а часы команды уходят на перекладывание параметров. Кнопки возвращают эти часы в проект.' },
-      { id: 'gap', label: 'ГАП', line: 'Эталонный этаж оформляете один раз, дальше его повторяет кнопка. Команда занимается архитектурой, а не рутиной.' },
-      { id: 'bim', label: 'BIM-координатор', line: 'Модель по EIR девелопера: коды, параметры, рабочие наборы. Самопроверка показывает готовность в процентах до отправки заказчику.' }
+      { id: 'gendir', label: 'Гендир / развитие', line: 'Сроки РД не двигаются, а часы уходят на рутину. Кнопки возвращают их в проект.' },
+      { id: 'gap', label: 'ГАП', line: 'Эталонный этаж оформляете один раз, дальше его повторяет кнопка.' },
+      { id: 'bim', label: 'BIM-координатор', line: 'Самопроверка показывает готовность модели по EIR до отправки заказчику.' }
     ];
     const roles = ROLES.map(r => {
       const on = st.role === r.id;
@@ -816,6 +1036,26 @@ class Component extends DCLogic {
         pick: () => self.setState({ op: o.id })
       };
     });
+    const RV_DATA = [{"title": "Проект", "cols": [{"big": {"id": "Проект - Обновить проект", "label": "Обновить проект", "img": "img/rv/b36.png", "phrase": "Новая версия стандарта приходит в модель одним нажатием, у всей команды одинаково.", "panel": "Проект"}}, {"big": {"drop": "std", "label": "Стандарты проекта", "img": "img/rv/b40.png", "items": [{"id": "Проект - Типы стен отделки", "label": "Типы стен отделки", "img": "img/rv/b40.png", "phrase": "Типы отделки по стандарту бюро, а не каждый раз заново.", "panel": "Проект"}, {"id": "Проект - Типы полов", "label": "Типы полов", "img": "img/rv/b38.png", "phrase": "Пол сразу с реальной толщиной и маркой.", "panel": "Проект"}, {"id": "Проект - Типы потолков", "label": "Типы потолков", "img": "img/rv/b39.png", "phrase": "Потолки по стандарту бюро в одно нажатие.", "panel": "Проект"}, {"id": "Проект - Типы плинтусов", "label": "Типы плинтусов", "img": "img/rv/b37.png", "phrase": "Плинтусы, которые не надо заводить вручную.", "panel": "Проект"}, {"id": "Проект - Типы профилей", "label": "Типы профилей", "img": "img/rv/b24.png", "phrase": "Декоративные профили по стандарту бюро: марка, цвет, размер.", "panel": "Проект"}, {"id": "Проект - Цвета отделки", "label": "Цвета отделки", "img": "img/rv/b41.png", "phrase": "Каждая марка своим цветом на плане и в ведомости, без ручных фильтров.", "panel": "Проект"}, {"id": "Проект - Цвета полов", "label": "Цвета полов", "img": "img/rv/b43.png", "phrase": "Каждая марка своим цветом на плане и в ведомости, без ручных фильтров.", "panel": "Проект"}, {"id": "Проект - Цвета потолков", "label": "Цвета потолков", "img": "img/rv/b44.png", "phrase": "Каждая марка своим цветом на плане и в ведомости, без ручных фильтров.", "panel": "Проект"}, {"id": "Проект - Цвета плинтусов", "label": "Цвета плинтусов", "img": "img/rv/b42.png", "phrase": "Каждая марка своим цветом на плане и в ведомости, без ручных фильтров.", "panel": "Проект"}]}}]}, {"title": "Отделка этажа", "cols": [{"big": {"id": "Отделка этажа - Проёмы по АР", "label": "Проёмы по АР", "img": "img/rv/b25.png", "phrase": "Отделка не перекрывает двери архитекторов.", "panel": "Отделка этажа"}}, {"stack": [{"id": "Отделка этажа - Полы по помещениям", "label": "Полы по помещениям", "img": "img/rv/b22.png", "phrase": "Вписали марку в помещение, и пол на месте.", "panel": "Отделка этажа"}, {"id": "Отделка этажа - Плинтусы по помещениям", "label": "Плинтусы по помещениям", "img": "img/rv/b21.png", "phrase": "Плинтус обходит помещение и сам прерывается у дверей.", "panel": "Отделка этажа"}, {"id": "Отделка этажа - Высота отделки", "label": "Высота отделки", "img": "img/rv/b20.png", "phrase": "Высоты отделки подтягиваются сами.", "panel": "Отделка этажа"}]}]}, {"title": "Свет", "cols": [{"big": {"id": "Свет - Светильники", "label": "Светильники", "img": "img/rv/b47.png", "phrase": "Светильники проекта появляются в модели по таблице.", "panel": "Свет"}}, {"stack": [{"id": "Свет - Светильники по линии", "label": "Расставить по линии", "img": "img/rv/b46.png", "phrase": "Линия светильников с ровным шагом.", "panel": "Свет"}, {"id": "Свет - Марки светильников", "label": "Марки светильников", "img": "img/rv/b45.png", "phrase": "Все светильники на плане замаркированы.", "panel": "Свет"}]}]}, {"title": "Электрика", "cols": [{"big": {"id": "Электрика - Оконечка", "label": "Оконечка", "img": "img/rv/b51.png", "phrase": "Слаботочное оборудование в модели одним нажатием, со знаками как у смежников.", "panel": "Электрика"}}, {"stack": [{"id": "Электрика - Розетки и выключатели", "label": "Розетки и выключатели", "img": "img/rv/b52.png", "phrase": "Электроустановочные изделия по таблице бюро.", "panel": "Электрика"}, {"id": "Электрика - Марки оконечки", "label": "Марки оконечки", "img": "img/rv/b50.png", "phrase": "Марка прибора сама показывает высоту от чистого пола.", "panel": "Электрика"}]}]}, {"title": "Ведомости", "cols": [{"big": {"drop": "ved", "label": "Ведомости", "img": "img/rv/b04.png", "items": [{"id": "Ведомости - Ведомость отделки", "label": "Ведомость отделки", "img": "img/rv/b04.png", "phrase": "Ведомость в оформлении бюро, условные совпадают с планом.", "panel": "Ведомости"}, {"id": "Ведомости - Ведомость полов", "label": "Ведомость полов", "img": "img/rv/b07.png", "phrase": "Ведомость в оформлении бюро, условные совпадают с планом.", "panel": "Ведомости"}, {"id": "Ведомости - Ведомость потолков", "label": "Ведомость потолков", "img": "img/rv/b08.png", "phrase": "Ведомость в оформлении бюро, условные совпадают с планом.", "panel": "Ведомости"}, {"id": "Ведомости - Ведомость плинтусов", "label": "Ведомость плинтусов", "img": "img/rv/b06.png", "phrase": "Ведомость в оформлении бюро, условные совпадают с планом.", "panel": "Ведомости"}, {"id": "Ведомости - Ведомость лобиков", "label": "Ведомость лобиков", "img": "img/rv/b03.png", "phrase": "Ведомость в оформлении бюро, условные совпадают с планом.", "panel": "Ведомости"}]}}, {"big": {"drop": "spec", "label": "Спецификации", "img": "img/rv/b15.png", "items": [{"id": "Ведомости - Экспликация помещений", "label": "Экспликация помещений", "img": "img/rv/b17.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация дверей", "label": "Спецификация дверей", "img": "img/rv/b25.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация мебели", "label": "Спецификация мебели", "img": "img/rv/b17.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация светильников", "label": "Спецификация светильников", "img": "img/rv/b15.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация светодиодной ленты", "label": "Спецификация светодиодной ленты", "img": "img/rv/b16.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация розеток и выключателей", "label": "Спецификация розеток и выключателей", "img": "img/rv/b14.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация слаботочного оборудования", "label": "Спецификация слаботочного оборудования", "img": "img/rv/b13.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация лифтового оборудования", "label": "Спецификация лифтового оборудования", "img": "img/rv/b11.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация люков", "label": "Спецификация люков", "img": "img/rv/b12.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация плинтусов-профилей", "label": "Спецификация плинтусов-профилей", "img": "img/rv/b05.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация декоративного профиля", "label": "Спецификация декоративного профиля", "img": "img/rv/b01.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация потолочных профилей", "label": "Спецификация потолочных профилей", "img": "img/rv/b09.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация профилей стен", "label": "Спецификация профилей стен", "img": "img/rv/b10.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}, {"id": "Ведомости - Спецификация колесоотбойников", "label": "Спецификация колесоотбойников", "img": "img/rv/b02.png", "phrase": "Любая спецификация наполнения модели собирается из модели, с картинками условных.", "panel": "Ведомости"}]}}]}, {"title": "Оформление", "cols": [{"big": {"id": "Оформление - Марки АИ", "label": "Марки", "img": "img/rv/b29.png", "phrase": "Все марки бюро в проекте.", "panel": "Оформление"}}, {"stack": [{"drop": "par", "label": "Параметры", "img": "img/rv/b31.png", "items": [{"id": "Оформление - Параметры отделки", "label": "Параметры отделки", "img": "img/rv/b31.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}, {"id": "Оформление - Параметры полов", "label": "Параметры полов", "img": "img/rv/b32.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}, {"id": "Оформление - Параметры потолков", "label": "Параметры потолков", "img": "img/rv/b33.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}, {"id": "Оформление - Параметры дверей", "label": "Параметры дверей", "img": "img/rv/b31.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}, {"id": "Оформление - Параметры мебели", "label": "Параметры мебели", "img": "img/rv/b31.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}, {"id": "Оформление - Параметры светильников", "label": "Параметры светильников", "img": "img/rv/b31.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}, {"id": "Оформление - Параметры оборудования", "label": "Параметры оборудования", "img": "img/rv/b31.png", "phrase": "Параметры заказчика заполняются у всех элементов наполнения: этаж, корпус, секция, комплект.", "panel": "Оформление"}]}, {"id": "Оформление - Выровнять марки", "label": "Выровнять", "img": "img/rv/b28.png", "phrase": "Повернули план, а надписи ровные.", "panel": "Оформление"}, {"id": "Оформление - Примечания к видам", "label": "Примечания к видам", "img": "img/rv/b34.png", "phrase": "Примечания встраиваются на все листы в заданное место. ГАП правит их в одном месте, а стандарт можно задать сразу для всех моделей проекта.", "panel": "Оформление"}]}, {"stack": [{"id": "Оформление - Титул и общие данные", "label": "Титул и общие данные", "img": "img/rv/b30.png", "phrase": "Титульный лист, общие данные и ведомости комплекта одной кнопкой.", "panel": "Оформление"}]}]}, {"title": "Контроль", "cols": [{"big": {"id": "Контроль - Проверка по EIR", "label": "Проверка по EIR", "img": "img/rv/b18.png", "phrase": "Видно, готова ли модель к сдаче, до того как её проверит заказчик.", "panel": "Контроль"}}, {"stack": [{"id": "Контроль - Устранить замечания", "label": "Устранить замечания", "img": "img/rv/b19.png", "phrase": "Часть замечаний закрывается сама, остальные в списке.", "panel": "Контроль"}]}]}, {"title": "Справка", "cols": [{"stack": [{"id": "Справка - Вопрос", "label": "Вопрос", "img": "img/rv/b48.png", "phrase": "Вопрос автору прямо из Revit, ответ приходит туда же в течение двух часов. Всё общение внутри плагина, не выходя из Revit.", "panel": "Справка"}, {"id": "Справка - Справка", "label": "Справка", "img": "img/rv/b49.png", "phrase": "Инструкция всегда под рукой.", "panel": "Справка"}]}]}];
+    const rvTabs = ['Архитектура', 'Конструкция', 'Системы', 'Вставить', 'Аннотации', 'Анализ', 'Формы и генплан', 'Совместная работа', 'Вид', 'Управление', 'Надстройки'];
+    const rvAll = {}; let rvOpenN = 0;
+    const rvItem = b => {
+      if (b.drop) {
+        const open = st.rvOpen === b.drop; if (open) rvOpenN = b.items.length;
+        const items = b.items.map(rvItem);
+        return { label: b.label, img: b.img, isDrop: true, open, expanded: open ? 'true' : 'false', items,
+          pressed: items.some(i => i.pressed === 'true') ? 'true' : 'false',
+          pick: () => self.setState({ rvOpen: open ? '' : b.drop }) };
+      }
+      rvAll[b.id] = b;
+      return { label: b.label, img: b.img, isDrop: false, open: false, expanded: false, items: [],
+        pressed: st.rvSel === b.id ? 'true' : 'false', pick: () => self.setState({ rvSel: b.id, rvOpen: '' }) };
+    };
+    const rvPanels = RV_DATA.map(pn => ({ title: pn.title, cols: pn.cols.map(c => c.big
+      ? { isBig: true, isStack: false, b: rvItem(c.big), items: [] }
+      : { isBig: false, isStack: true, items: c.stack.map(rvItem) }) }));
+    const rvCur = rvAll[st.rvSel] || rvAll['Проект - Обновить проект'];
+    const rvPad = rvOpenN ? (rvOpenN * 26 + 14) + 'px' : '0px';
     const cur = opById[st.op] || OPS[4];
     const op = {
       label: cur.label, name: cur.name, desc: cur.desc,
@@ -825,9 +1065,9 @@ class Component extends DCLogic {
     };
 
     const pains = [
-      { pain: 'Каждый из десятков этажей оформляют вручную', fix: '«Тиражировать этаж»', detail: 'Этаж с оформлением копируется на другие. 4 часа → 5 минут.' },
+      { pain: 'Каждый из десятков этажей оформляют вручную', fix: '«Тиражировать этаж»', detail: 'Этаж с оформлением копируется на другие.' },
       { pain: 'Модель возвращают по замечаниям EIR', fix: '«Проверка по EIR» и «Устранить замечания»', detail: 'Готовность в процентах, типовые ошибки исправляются сами.' },
-      { pain: 'Отделку, полы и потолки расписывают по каждому помещению', fix: 'Кнопки по планам', detail: 'Стены, полы, потолки, плинтусы, параметры, марки, ведомости. 30 минут на помещение → 1 минута.' },
+      { pain: 'Отделку, полы и потолки расписывают по каждому помещению', fix: 'Кнопки по планам', detail: 'Стены, полы, плинтусы, параметры, марки и ведомости по всем помещениям.' },
       { pain: 'Этажи разных корпусов расходятся между собой', fix: '«Идентичность этажей» и «Обновить проект»', detail: 'Сверка и единый стандарт во всех моделях.' }
     ];
 
@@ -875,29 +1115,29 @@ class Component extends DCLogic {
         task: 'Интерьеры МОП по EIR девелопера, [N] разрабатываемых этажей, остальные тиражируются.',
         done: 'Шаблон под EIR, BEP, кнопки на планы отделки, полов и потолков, самопроверка EIR и тиражирование этажей.',
         before: '[___] ч', after: '[___] ч', note: '[подставим цифры, когда кейс будет согласован]' },
-      real: { tag: 'Мы уже это сделали', title: 'РД АИ жилого комплекса: 3 корпуса, 112 этажей',
+      real: { tag: 'Опыт основателя', title: 'РД АИ жилого комплекса: 3 корпуса, 112 этажей',
         task: 'Интерьеры МОП по EIR крупного московского девелопера, корпус до 59 этажей, 36 разрабатываемых этажей, остальные тиражируются.',
         done: 'Шаблон под EIR с нуля, BEP, 24 кнопки на планы отделки, полов и потолков, самопроверка EIR и тиражирование этажей.',
-        before: '657 ч', after: '39 ч', note: 'около 15 недель работы одного специалиста' }
+        before: '[___] ч', after: '[___] ч', note: '[цифры только после реального замера]' }
     };
     const caseData = CASES[caseMode] || CASES.demo;
 
-    const ask = 'по запросу';
+    const ask = '';
     const priceRows = [
       { name: 'Шаблон под EIR заказчика', price: showPrices ? '60 000 ₽' : ask },
       { name: 'BEP до утверждения', price: showPrices ? '40 000 ₽' : ask },
       { name: 'Кнопки на все планы АИ', price: showPrices ? '[___] ₽' : ask },
       { name: 'Ведение до сдачи', price: showPrices ? '[___] ₽ в месяц' : ask },
       { name: 'Пилот: корпус или эталонный этаж', price: showPrices ? '[100–150] тыс. ₽' : ask }
-    ].map(r => Object.assign(r, { color: r.price === ask ? '#5E544D' : accent }));
+    ].map(r => Object.assign(r, { color: r.price === ask ? '#5E544D' : accent, hasPrice: !!r.price }));
 
     const FAQ = [
-      { q: 'Что такое «кнопка»?', a: 'Команда на отдельной вкладке Flow в Revit. Нажимаете, и операция, которую раньше делали руками (отделка помещения, развёртки, проверка по EIR), выполняется по правилам вашего проекта.' },
-      { q: 'У нас свой EIR и свои стандарты. Подойдёт?', a: 'Кнопки настраиваются под EIR каждого проекта: коды, параметры, марки, оформление. Поэтому первый шаг всегда разбор вашего EIR.' },
-      { q: 'Можно начать с малого?', a: 'Да, с пилота: один корпус или эталонный этаж. Замеряем экономию на вашем объекте, и пилот засчитывается в проект.' },
-      { q: 'Сколько занимает внедрение?', a: 'Типовой план: неделя на бриф и EIR, затем шаблон и BEP, кнопки и пилот, дальше ведение до сдачи. Точный график зависит от объекта, его обсуждаем на созвоне.' },
-      { q: 'Как устроена лицензия?', a: 'Лицензионный ключ выдаётся на проект. Условия обсудим на созвоне.' },
-      { q: 'Сколько это стоит?', a: 'Цена считается от объёма: корпуса, разрабатываемые этажи, состав планов по ТЗ. Тиражируемые этажи бесплатно. Оплата по этапам.' },
+      { q: 'Что такое «кнопка»?', a: 'Команда на вкладке Flow в Revit. Нажали, и ручная операция выполняется по правилам вашего проекта.' },
+      { q: 'У нас свой EIR и свои стандарты. Подойдёт?', a: 'Да. Кнопки настраиваются под EIR проекта, поэтому начинаем с разбора вашего EIR.' },
+      { q: 'Можно начать с малого?', a: 'Да, с пилота на одном корпусе или эталонном этаже. Пилот засчитывается в проект.' },
+      { q: 'Сколько занимает внедрение?', a: 'Разбор EIR, шаблон и BEP, кнопки и пилот, дальше ведение до сдачи. Точный график зависит от объекта.' },
+      { q: 'Как устроена лицензия?', a: 'Ключ выдаётся на проект.' },
+      { q: 'Сколько это стоит?', a: 'Цену называем, когда получим исходные данные: EIR, ТЗ, модель АР, число корпусов и этажей. Тиражируемые этажи бесплатно. Оплата по этапам.' },
       { q: 'Что нужно от нас для старта?', a: 'EIR и ТЗ заказчика, модель АР и график, ответственный за BIM с вашей стороны.' }
     ];
     const faq = FAQ.map((x, i) => ({ q: x.q, a: x.a, open: st.faqOpen === i, sign: st.faqOpen === i ? '−' : '+',
@@ -941,7 +1181,7 @@ class Component extends DCLogic {
 
     return {
       accent,
-      roles, roleLine: roleObj.line, heroOps, pains, ribbon, op,
+      roles, roleLine: roleObj.line, heroOps, pains, ribbon, op, rvTabs, rvPanels, rvCur, rvPad,
       calcOps, people: st.people, calc,
       incPeople: () => self.setState({ people: Math.min(200, self.state.people + 1) }),
       decPeople: () => self.setState({ people: Math.max(1, self.state.people - 1) }),
@@ -974,7 +1214,7 @@ class Component extends DCLogic {
     };
   }
 }
-DCLite.mount(Component, document.getElementById('app'), document.getElementById('tpl'), {"accent": "#B5401F", "showPrices": false, "caseMode": "demo", "stickyButton": true, "$preview": null});
+DCLite.mount(Component, document.getElementById('app'), document.getElementById('tpl'), {"accent": "#B5401F", "showPrices": false, "caseMode": "hidden", "stickyButton": true, "$preview": null});
 </script>
 </body>
 </html>
