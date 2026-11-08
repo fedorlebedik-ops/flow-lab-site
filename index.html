@@ -152,6 +152,34 @@ html.fl-menu-open .fl-menu{display:flex}
 .fl-menu__note{position:relative;margin:auto 0 0;font-size:14px;color:rgba(244,244,240,.7)}
 @media (max-width:1100px){.fl-links{display:none}.fl-menu-btn{display:inline-flex;align-items:center}}
 @media (max-width:560px){.fl-nav .fl-call{display:none}}
+/* ===== v3: спокойная лента ===== */
+.v3-sec{max-width:1200px;margin:0 auto;padding:clamp(80px,10vw,150px) clamp(16px,4vw,48px) 0;box-sizing:border-box;display:flex;flex-direction:column;gap:clamp(32px,4vw,56px)}
+#faq.v3-sec{padding-bottom:clamp(90px,11vw,160px)}
+.v3-split{flex-direction:row;flex-wrap:wrap;gap:40px clamp(40px,6vw,96px)}
+.v3-split>.v3-side{flex:1 1 340px;min-width:0;display:flex;flex-direction:column}
+.v3-split>:not(.v3-side){flex:999 1 560px;min-width:0}
+.v3-h2{margin:0;font-size:clamp(28px,3.4vw,44px);line-height:1.05;font-weight:600;font-style:italic;text-transform:uppercase;letter-spacing:.02em;text-wrap:balance}
+.v3-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.v3-list li{display:grid;grid-template-columns:72px minmax(0,1fr);gap:4px 20px;padding:clamp(22px,2.6vw,32px) 0;border-top:1px solid rgba(27,22,19,.14)}
+.v3-list li:last-child{border-bottom:1px solid rgba(27,22,19,.14)}
+.v3-n{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(36px,4vw,52px);line-height:.9;color:#B5401F}
+.v3-list h3,.v3-steps h3{margin:0;font-size:clamp(21px,2.2vw,28px);font-weight:600;line-height:1.2}
+.v3-list p,.v3-steps p{margin:8px 0 0;max-width:560px;font-size:17px;line-height:1.6;color:#5E544D}
+.v3-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:clamp(24px,3vw,48px)}
+.v3-steps li{position:relative;padding-top:22px;border-top:1px solid rgba(27,22,19,.18);display:flex;flex-direction:column;gap:12px}
+.v3-steps li::before{content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;border-radius:50%;background:#B5401F}
+.v3-steps p{margin:0}
+.v3-more{align-self:flex-start;color:#1B1613;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-underline-offset:6px;text-decoration-color:rgba(181,64,31,.5)}
+.v3-more span{color:#B5401F}
+.v3-big{margin:0;max-width:760px;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(26px,2.9vw,38px);line-height:1.28;color:#1B1613}
+.v3-note{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 32px;padding-top:24px;border-top:1px solid rgba(27,22,19,.14)}
+.v3-note p{margin:0;flex:1 1 420px;min-width:0;font-size:clamp(18px,1.8vw,22px);line-height:1.45;color:#3A302A}
+.v3-note b{color:#B5401F;font-weight:600}
+.v3-note a{color:#1B1613;font-size:14px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-underline-offset:6px;text-decoration-color:rgba(181,64,31,.5);white-space:nowrap}
+.v3-note a span{color:#B5401F}
+.v3-fade-down{height:clamp(120px,14vw,220px);background:linear-gradient(180deg,#1B1613 0%,#2E2019 14%,#5A3F31 34%,#9C8676 60%,#D3C8BD 82%,#EDE8E2 100%);margin-top:-1px}
+.v3-fade-up{height:clamp(140px,16vw,240px);background:linear-gradient(0deg,#1B1613 0%,#2E2019 14%,#5A3F31 34%,#9C8676 60%,#D3C8BD 82%,#EDE8E2 100%);margin-bottom:-1px}
+#faq .q-fig,#what .q-fig{margin:36px 0 0 76px}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Flow Lab", "alternateName": ["Флоу Лаб", "Flow Lab — лаборатория автоматизации Revit"], "url": "https://flow-lab.pro/", "logo": "https://flow-lab.pro/icon-512.png", "description": "Лаборатория автоматизации рабочей документации в Revit для архитектурных бюро: кнопки под EIR девелопера, шаблон, BEP, сопровождение до сдачи.", "telephone": "+7 950 033-70-66", "areaServed": "RU", "founder": {"@type": "Person", "name": "Фёдор Лебедик"}, "sameAs": ["https://t.me/Flow_lab_pro"]}</script>
 <link rel="stylesheet" href="/fl-extra.css">
@@ -190,58 +218,30 @@ html.fl-menu-open .fl-menu{display:flex}
 
       <div style="display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 4px">
         <a href="#form" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 30px; border-radius: 999px; background: #E8A06A; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase">Записаться на созвон <span aria-hidden="true">→</span></a>
-        <a href="#calc" style="color: #F4F4F0; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; text-underline-offset: 6px">Посчитать экономию</a>
       </div>
     </div>
 
   </div>
 </header>
 
-<!-- ═══════════ КОРОТКО О ГЛАВНОМ ═══════════ -->
-<section aria-labelledby="sum-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 9vw, 120px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px">
-  <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column">
+<!-- ═══════════ ПЕРЕХОД ИЗ ТЁМНОГО ═══════════ -->
+<div class="v3-fade-down" aria-hidden="true"></div>
+
+<!-- ═══════════ ЧТО МЫ ДЕЛАЕМ ═══════════ -->
+<section id="what" aria-labelledby="what-h" class="v3-sec v3-split">
+  <div class="v3-side">
     <div style="display: flex; align-items: flex-start; gap: 20px">
-    <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 18px"></span>
-    <h2 id="sum-h" style="margin: 0; font-size: clamp(26px, 3vw, 36px); line-height: 1.05; font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Коротко о&#160;главном →</h2>
+      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 0.62em"></span>
+      <h2 id="what-h" class="v3-h2">Что мы делаем</h2>
     </div>
     <figure class="q-fig" aria-hidden="true"><div class="q-img"><img src="img/quiet_plan.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
   </div>
-  <div style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 22px; font-size: clamp(17px, 1.6vw, 20px); line-height: 1.5">
-    <p style="margin: 0">Девелоперы проверяют модель по&#160;своему EIR ещё до&#160;приёмки комплекта.</p>
-    <p style="margin: 0">Эталонный этаж нужно без ошибок повторить на&#160;десятках этажей, и&#160;на&#160;это уходят недели.</p>
-    <p style="margin: 0; color: {{accent}}; font-weight: 500">Мы настраиваем шаблон и&#160;BEP под ваш EIR, ставим кнопки на&#160;планы АИ и&#160;ведём модель до&#160;сдачи.</p>
-  </div>
+  <ol class="v3-list">
+    <li><span class="v3-n" aria-hidden="true">01</span><div><h3>Кнопки под ваш EIR.</h3><p>Отделка, полы, потолки, марки, ведомости и&#160;тиражирование этажей одним нажатием.</p></div></li>
+    <li><span class="v3-n" aria-hidden="true">02</span><div><h3>Модель проходит проверку.</h3><p>Самопроверка по&#160;EIR показывает, что поправить, до&#160;отправки заказчику.</p></div></li>
+    <li><span class="v3-n" aria-hidden="true">03</span><div><h3>Ведём до&#160;сдачи.</h3><p>Шаблон, BEP, правки и&#160;замечания заказчика берём на&#160;себя.</p></div></li>
+  </ol>
 </section>
-
-<!-- ═══════════ ПРОБЛЕМА → РЕШЕНИЕ ═══════════ -->
-<section aria-labelledby="pain-h" style="background: #F4F4F0">
-  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 40px">
-    <div style="display: flex; align-items: center; gap: 20px">
-      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
-      <h2 id="pain-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Ваша боль → что делает кнопка</h2>
-    </div>
-    <div style="display: flex; flex-direction: column">
-      <sc-for list="{{pains}}" as="p" hint-placeholder-count="4">
-        <div style="display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: baseline; padding: 26px 0; border-top: 1px solid rgba(27,22,19,0.16)">
-          <p style="margin: 0; flex: 1 1 280px; font-size: clamp(17px, 1.5vw, 19px); line-height: 1.45">{{p.pain}}</p>
-          <span aria-hidden="true" style="flex: none; font-size: 22px; color: {{accent}}">→</span>
-          <div style="flex: 1.3 1 320px; display: flex; flex-direction: column; gap: 6px">
-            <p style="margin: 0; font-weight: 600; font-size: 16px">{{p.fix}}</p>
-            <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">{{p.detail}}</p>
-          </div>
-        </div>
-      </sc-for>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ ГЛОУ-РАЗДЕЛИТЕЛЬ ═══════════ -->
-<div aria-hidden="true" style="position: relative; overflow: hidden; background: #1B1613; height: clamp(220px, 30vw, 380px)">
-  <div class="fs-glow" style="position: absolute; left: -10%; top: -30%; width: 80%; height: 160%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 35%, rgba(120,34,12,0.5) 62%, rgba(27,22,19,0) 100%); filter: blur(8px)"></div>
-  <div style="position: relative; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; align-items: center; justify-content: flex-end">
-    <span style="color: #F4F4F0; font-weight: 600; font-size: clamp(34px, 6vw, 80px); letter-spacing: 0.02em; text-transform: uppercase">Решение →</span>
-  </div>
-</div>
 
 <!-- ═══════════ ЛЕНТА REVIT ═══════════ -->
 <section id="buttons" aria-labelledby="rib-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 36px">
@@ -250,7 +250,7 @@ html.fl-menu-open .fl-menu{display:flex}
       <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
       <h2 id="rib-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Вкладка Flow в&#160;вашем Revit</h2>
     </div>
-    <p style="margin: 0; max-width: 520px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Пример вкладки из&#160;нашей работы. Нажмите на&#160;кнопку и&#160;посмотрите, какую рутину она берёт на&#160;себя.</p>
+    <p style="margin: 0; max-width: 520px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Пример из&#160;нашей работы. Нажмите на&#160;кнопку.</p>
   </div>
 
   <!-- макет окна: Revit 2022, светлая тема; вкладка Flow -->
@@ -321,263 +321,37 @@ html.fl-menu-open .fl-menu{display:flex}
       </div>
     </div>
   </div>
-  <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px 40px; padding: clamp(24px, 3.4vw, 40px); border-radius: 16px; background: #F4F4F0; border-left: 4px solid {{accent}}">
-    <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
-      <p style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600; line-height: 1.15; color: {{accent}}">Ваши кнопки будут другими</p>
-      <p style="margin: 0; max-width: 680px; font-size: 17px; line-height: 1.55; color: #3A302A">Кнопки пишем под ваш проект: ваш EIR, стандарты бюро и&#160;задачи, на&#160;которые уходит время именно у&#160;вашей команды. Выше пример того, что мы делали для раздела АИ. Другой раздел, другая рутина: кнопки соберём под&#160;неё.</p>
-    </div>
-    <a href="#form" style="flex: none; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; background: {{accent}}; color: #F4F4F0; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">Разобрать мой проект <span aria-hidden="true">→</span></a>
+  <div class="v3-note">
+    <p><b>Ваши кнопки будут другими.</b> Пишем их под&#160;ваш проект и&#160;задачи вашей команды.</p>
+    <a href="#form">Разобрать мой проект <span aria-hidden="true">→</span></a>
   </div>
 </section>
 
-<!-- ═══════════ ЧТО ВХОДИТ ═══════════ -->
-<section aria-labelledby="inc-h" style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(64px, 8vw, 110px); box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
-  <h2 id="inc-h" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Что входит во&#160;внедрение</h2>
-  <div style="position: relative; overflow: hidden; border-radius: 16px; background: #1B1613; color: #F4F4F0; padding: clamp(28px, 4vw, 52px)">
-    <div class="fs-glow" aria-hidden="true" style="position: absolute; right: -20%; top: -60%; width: 75%; height: 220%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,120,47,0.85) 0%, rgba(196,66,30,0.45) 40%, rgba(27,22,19,0) 100%)"></div>
-    <div style="position: relative; max-width: 640px; display: flex; flex-direction: column; gap: 14px">
-      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">Основа продукта</p>
-      <p style="margin: 0; font-size: clamp(26px, 3.2vw, 40px); font-weight: 600; line-height: 1.1">Кнопки на&#160;все планы раздела АИ</p>
-      <p style="margin: 0; font-size: 16px; line-height: 1.6; color: rgba(244,244,240,0.85)">Отделка, полы, потолки, плинтусы, профили, мебель, двери, свет, ведомости, листы, тиражирование этажей, самопроверка EIR. </p>
+<!-- ═══════════ КАК НАЧИНАЕМ ═══════════ -->
+<section id="start" aria-labelledby="start-h" class="v3-sec">
+  <div style="display: flex; align-items: flex-start; gap: 20px">
+      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 0.62em"></span>
+      <h2 id="start-h" class="v3-h2">Как начинаем</h2>
     </div>
-    <figure class="q-fig q-fig--card" aria-hidden="true"><div class="q-img"><img src="img/quiet_materials.jpg" alt="" loading="lazy" decoding="async" width="900" height="600"></div></figure>
-  </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px">
-    <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
-      <p style="margin: 0; font-size: 20px; font-weight: 600"><span style="color: {{accent}}">+</span> Шаблон под EIR</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">Параметры, коды, марки, оформление по&#160;ГОСТ.</p>
-    </div>
-    <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
-      <p style="margin: 0; font-size: 20px; font-weight: 600"><span style="color: {{accent}}">+</span> BEP</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">Доводим до&#160;утверждения заказчиком.</p>
-    </div>
-    <div style="padding: 28px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 8px">
-      <p style="margin: 0; font-size: 20px; font-weight: 600"><span style="color: {{accent}}">+</span> Ведение до&#160;сдачи</p>
-      <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #5E544D">Выгрузки, коллизии, правки АР, замечания заказчика.</p>
-    </div>
-  </div>
+  <ol class="v3-steps">
+    <li><span class="v3-n" aria-hidden="true">01</span><h3>Созвон.</h3><p>Разбираем ваш EIR и&#160;задачи команды.</p></li>
+    <li><span class="v3-n" aria-hidden="true">02</span><h3>Пилот.</h3><p>Кнопки на&#160;одном этаже вашей модели.</p></li>
+    <li><span class="v3-n" aria-hidden="true">03</span><h3>Весь проект.</h3><p>Кнопки на&#160;все планы и&#160;ведение до&#160;сдачи.</p></li>
+  </ol>
+  <a class="v3-more" href="/kak-rabotaem/">Подробнее о&#160;том, как мы работаем <span aria-hidden="true">→</span></a>
 </section>
-
-<!-- ═══════════ КАЛЬКУЛЯТОР ═══════════ -->
-<section id="calc" aria-labelledby="calc-h" style="background: #F4F4F0">
-  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
-    <div style="display: flex; flex-wrap: wrap; gap: 20px 64px; align-items: flex-end; justify-content: space-between">
-      <div style="display: flex; align-items: center; gap: 20px">
-        <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
-        <h2 id="calc-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Посчитайте свои часы</h2>
-      </div>
-      <p style="margin: 0; max-width: 440px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; line-height: 1.25; color: #5E544D">Сколько раз в&#160;месяц один ваш сотрудник делает каждую операцию?</p>
-    </div>
-
-    <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: stretch">
-      <div style="flex: 999 1 600px; min-width: 0; border-radius: 16px; overflow: hidden; background: #FBFAF7; box-shadow: 0 0 0 1px rgba(27,22,19,0.08)">
-        <div style="overflow-x: auto">
-          <div style="min-width: 560px">
-            <div style="display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 0.9fr) minmax(0, 0.8fr) minmax(0, 1.3fr); gap: 12px; padding: 14px 20px; background: #E4DDD5; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #5E544D">
-              <span>Операция</span><span>Вручную</span><span>Кнопкой</span><span style="text-align: right">Раз в месяц</span>
-            </div>
-            <sc-for list="{{calcOps}}" as="c" hint-placeholder-count="5">
-              <div style="display: grid; grid-template-columns: minmax(0, 2.4fr) minmax(0, 0.9fr) minmax(0, 0.8fr) minmax(0, 1.3fr); gap: 12px; align-items: center; padding: 14px 20px; border-top: 1px solid rgba(27,22,19,0.08)">
-                <span style="font-size: 15px; line-height: 1.35">{{c.name}}</span>
-                <span style="font-size: 15px; color: #5E544D">{{c.manualTxt}}</span>
-                <span style="font-size: 15px; font-weight: 600; color: {{accent}}">{{c.btnTxt}}</span>
-                <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px">
-                  <button type="button" onClick="{{c.dec}}" aria-label="Меньше: {{c.name}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">−</button>
-                  <span aria-live="polite" style="min-width: 32px; text-align: center; font-size: 17px; font-weight: 600">{{c.count}}</span>
-                  <button type="button" onClick="{{c.inc}}" aria-label="Больше: {{c.name}}" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">+</button>
-                </div>
-              </div>
-            </sc-for>
-          </div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 18px 20px; border-top: 1px solid rgba(27,22,19,0.12); background: #F4F0EA">
-          <span style="font-size: 15px; font-weight: 500">Сотрудников на&#160;РД АИ</span>
-          <div style="display: flex; align-items: center; gap: 6px">
-            <button type="button" onClick="{{decPeople}}" aria-label="Меньше сотрудников" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">−</button>
-            <span aria-live="polite" style="min-width: 32px; text-align: center; font-size: 17px; font-weight: 600">{{people}}</span>
-            <button type="button" onClick="{{incPeople}}" aria-label="Больше сотрудников" style="width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.2); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div style="flex: 1 1 320px; min-width: 0; position: relative; overflow: hidden; border-radius: 16px; background: #1B1613; color: #F4F4F0; padding: 32px; display: flex; flex-direction: column; gap: 22px; justify-content: space-between">
-        <div class="fs-glow" aria-hidden="true" style="position: absolute; left: -40%; bottom: -60%; width: 140%; height: 120%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,120,47,0.8) 0%, rgba(196,66,30,0.4) 45%, rgba(27,22,19,0) 100%)"></div>
-        <div style="position: relative; display: flex; flex-direction: column; gap: 6px">
-          <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">В месяц на&#160;команду</p>
-          <p style="margin: 0; font-size: 18px"><span style="color: rgba(244,244,240,0.7)">{{calc.manualH}} ч</span> <span style="color: #E8A06A">→ {{calc.btnH}} ч</span></p>
-        </div>
-        <div style="position: relative; display: flex; flex-direction: column; gap: 4px">
-          <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">Освобождается</p>
-          <p aria-live="polite" style="margin: 0; font-size: clamp(48px, 6vw, 72px); font-weight: 600; line-height: 1">{{calc.savedH}}&#160;ч</p>
-          <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 24px; color: #F1D9C4">это ≈ {{calc.days}} рабочих дней по&#160;8&#160;часов</p>
-        </div>
-        <a href="#form" style="position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; border-radius: 999px; background: #F4F4F0; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase">Разобрать мой объект →</a>
-      </div>
-    </div>
-    <p style="margin: 0; font-size: 13px; line-height: 1.5; color: #6F645B">Значения по&#160;умолчанию даны для примера, подставьте свои. Расчёт ориентировочный: точный считаем на&#160;созвоне по&#160;замерам на&#160;вашем объекте.</p>
-  </div>
-</section>
-
-<!-- ═══════════ ПРОЦЕСС ═══════════ -->
-<section id="process" aria-labelledby="proc-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 36px">
-  <div style="display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between">
-    <div style="display: flex; align-items: center; gap: 20px">
-      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
-      <h2 id="proc-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Под ключ</h2>
-    </div>
-    <div role="group" aria-label="Как показать процесс" style="display: inline-flex; padding: 4px; border-radius: 999px; background: #E2DBD2">
-      <button type="button" onClick="{{showSteps}}" aria-pressed="{{procSteps}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: {{procStepsBg}}; color: {{procStepsFg}}; font-size: 14px; font-weight: 500; cursor: pointer">8 шагов</button>
-      <button type="button" onClick="{{showWeeks}}" aria-pressed="{{procWeeks}}" style="min-height: 44px; padding: 0 20px; border-radius: 999px; border: 0; background: {{procWeeksBg}}; color: {{procWeeksFg}}; font-size: 14px; font-weight: 500; cursor: pointer">По неделям</button>
-    </div>
-  </div>
-
-  <sc-if value="{{procSteps}}" hint-placeholder-val="{{true}}">
-    <div style="display: flex; flex-direction: column; gap: 28px">
-      <div style="overflow-x: auto; padding-bottom: 4px">
-        <ol style="list-style: none; margin: 0; padding: 0; display: flex; align-items: stretch; min-width: max-content">
-          <sc-for list="{{steps}}" as="s" hint-placeholder-count="8">
-            <li style="display: flex; align-items: center">
-              <button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="width: 128px; min-height: 120px; padding: 14px 12px; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; text-align: left; border-radius: 12px; border: 1px solid {{s.border}}; background: {{s.bg}}; color: {{s.fg}}; cursor: pointer">
-                <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; color: {{s.numFg}}">{{s.num}}</span>
-                <span style="font-size: 14px; line-height: 1.3; font-weight: 500">{{s.title}}</span>
-              </button>
-              <span aria-hidden="true" style="width: 26px; text-align: center; color: {{accent}}; font-size: 16px">{{s.arrow}}</span>
-            </li>
-          </sc-for>
-        </ol>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 16px 48px; align-items: baseline; padding: 28px 0 0; border-top: 1px solid rgba(27,22,19,0.16)">
-        <p style="margin: 0; flex: none; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(54px, 7vw, 88px); line-height: 0.9; color: {{accent}}">{{step.num}}</p>
-        <div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
-          <h3 style="margin: 0; font-size: clamp(22px, 2.4vw, 30px); font-weight: 600">{{step.title}}</h3>
-          <p style="margin: 0; max-width: 640px; font-size: 17px; line-height: 1.55; color: #5E544D">{{step.text}}</p>
-          <div style="display: flex; gap: 10px; margin-top: 8px">
-            <button type="button" onClick="{{prevStep}}" aria-label="Предыдущий шаг" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(27,22,19,0.24); background: transparent; color: #1B1613; font-size: 18px; cursor: pointer">←</button>
-            <button type="button" onClick="{{nextStep}}" aria-label="Следующий шаг" style="width: 48px; height: 48px; border-radius: 50%; border: 0; background: #1B1613; color: #F4F4F0; font-size: 18px; cursor: pointer">→</button>
-          </div>
-        </div>
-        <figure class="q-fig q-fig--proc" aria-hidden="true"><div class="q-img"><img src="img/quiet_gallery.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
-      </div>
-    </div>
-  </sc-if>
-
-  <sc-if value="{{procWeeks}}" hint-placeholder-val="{{false}}">
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0">
-      <sc-for list="{{weeks}}" as="w" hint-placeholder-count="4">
-        <div style="padding: 22px 22px 28px 0; border-top: 2px solid {{accent}}; display: flex; flex-direction: column; gap: 10px">
-          <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">{{w.when}} →</p>
-          <p style="margin: 0; font-size: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em">{{w.title}}</p>
-          <p style="margin: 0; font-size: 15px; line-height: 1.55; color: #5E544D">{{w.text}}</p>
-        </div>
-      </sc-for>
-    </div>
-  </sc-if>
-</section>
-
-<!-- ═══════════ КЕЙС ═══════════ -->
-<sc-if value="{{caseOn}}" hint-placeholder-val="{{true}}">
-<section aria-labelledby="case-h" style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px) clamp(64px, 8vw, 110px); box-sizing: border-box">
-  <div style="position: relative; overflow: hidden; border-radius: 16px; background: #1B1613; color: #F4F4F0; display: flex; flex-wrap: wrap">
-    <div aria-hidden="true" style="flex: 1 1 340px; min-height: 280px; position: relative; overflow: hidden; background: linear-gradient(160deg, #6B4A33 0%, #3A2A20 55%, #1B1613 100%)">
-      <div class="fs-glow" style="position: absolute; left: 10%; top: 20%; width: 90%; height: 90%; border-radius: 50%; background: radial-gradient(closest-side, rgba(240,150,80,0.75) 0%, rgba(196,66,30,0.35) 50%, rgba(27,22,19,0) 100%)"></div>
-      <div style="position: absolute; left: 14%; right: 14%; bottom: 0; height: 72%; display: flex; align-items: flex-end; gap: 10%">
-        <div style="flex: 1; height: 70%; border-radius: 6px 6px 0 0; background: rgba(244,236,226,0.14); box-shadow: inset 0 0 0 1px rgba(244,236,226,0.2)"></div>
-        <div style="flex: 1; height: 100%; border-radius: 6px 6px 0 0; background: rgba(244,236,226,0.2); box-shadow: inset 0 0 0 1px rgba(244,236,226,0.28)"></div>
-        <div style="flex: 1; height: 82%; border-radius: 6px 6px 0 0; background: rgba(244,236,226,0.14); box-shadow: inset 0 0 0 1px rgba(244,236,226,0.2)"></div>
-      </div>
-    </div>
-    <div style="flex: 1.3 1 380px; min-width: 0; padding: clamp(28px, 4vw, 52px); display: flex; flex-direction: column; gap: 18px">
-      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">{{caseData.tag}}</p>
-      <h2 id="case-h" style="margin: 0; font-size: clamp(24px, 3vw, 36px); font-weight: 600; line-height: 1.1; text-transform: uppercase">{{caseData.title}}</h2>
-      <div style="display: flex; flex-direction: column; gap: 4px">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,244,240,0.65)">Задача</p>
-        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.88)">{{caseData.task}}</p>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 4px">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,244,240,0.65)">Что сделали</p>
-        <p style="margin: 0; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.88)">{{caseData.done}}</p>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 14px; border-top: 1px solid rgba(244,244,240,0.2)">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(244,244,240,0.65)">Результат</p>
-        <p style="margin: 0; font-size: clamp(32px, 4vw, 52px); font-weight: 600; line-height: 1.05">{{caseData.before}} <span style="color: #E8A06A">→ {{caseData.after}}</span></p>
-        <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: #F1D9C4">{{caseData.note}}</p>
-      </div>
-    </div>
-  </div>
-</section>
-</sc-if>
 
 <!-- ═══════════ СТОИМОСТЬ ═══════════ -->
-<div aria-hidden="true" style="position: relative; overflow: hidden; background: #1B1613; height: clamp(200px, 26vw, 340px)">
-  <div class="fs-glow" style="position: absolute; right: -15%; top: -40%; width: 85%; height: 180%; border-radius: 50%; background: radial-gradient(closest-side, #F0782F 0%, #C4421E 35%, rgba(120,34,12,0.5) 62%, rgba(27,22,19,0) 100%); filter: blur(8px)"></div>
-  <div style="position: relative; height: 100%; max-width: 1200px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; align-items: center">
-    <span style="color: #F4F4F0; font-weight: 600; font-size: clamp(32px, 5.6vw, 76px); letter-spacing: 0.02em; text-transform: uppercase">К стоимости →</span>
-  </div>
-</div>
-
-<section id="price" aria-labelledby="price-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-direction: column; gap: 32px">
-  <div style="display: flex; align-items: center; gap: 20px">
-    <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613"></span>
-    <h2 id="price-h" style="margin: 0; font-size: clamp(24px, 2.8vw, 34px); font-weight: 600; font-style: italic; text-transform: uppercase; letter-spacing: 0.02em">Стоимость</h2>
-  </div>
-
-  <div style="display: flex; flex-wrap: wrap; gap: 28px">
-    <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: #5E544D">Из чего складывается объём</p>
-      <ul class="pr-list">
-        <sc-for list="{{priceRows}}" as="pr" hint-placeholder-count="5">
-          <li><span class="pr-plus" style="color: {{accent}}">+</span><span class="pr-name">{{pr.name}}</span><sc-if value="{{pr.hasPrice}}"><span class="pr-price" style="color: {{pr.color}}">{{pr.price}}</span></sc-if></li>
-        </sc-for>
-      </ul>
-    </div>
-    <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.55">
-      <p style="margin: 0; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 26px; line-height: 1.2">Как фиксируем цену</p>
-      <p style="margin: 0; color: #5E544D">Цену называем, когда получим исходные данные: EIR, ТЗ, модель АР, число корпусов и&#160;этажей. Тиражируемые этажи бесплатно.</p>
-      <p style="margin: 0; color: #5E544D">Оплата по&#160;этапам: шаблон и&#160;BEP, затем кнопки, затем ведение помесячно.</p>
-      <figure class="q-fig q-fig--aside" aria-hidden="true"><div class="q-img"><img src="img/quiet_drafting.jpg" alt="" loading="lazy" decoding="async" width="720" height="900"></div></figure>
-    </div>
-  </div>
-
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px">
-    <div style="padding: 30px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 10px">
-      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Пилот без риска</p>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55">Начинаем с&#160;одного корпуса или эталонного этажа{{pilotPrice}}. Замеряем экономию на&#160;вашем объекте. Пилот засчитывается в&#160;проект.</p>
-    </div>
-    <div style="padding: 30px; border-radius: 16px; background: #F4F4F0; display: flex; flex-direction: column; gap: 10px">
-      <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">Простая математика</p>
-      <p style="margin: 0; font-size: 17px; line-height: 1.55">Часы экономии × стоимость часа сотрудника. Прикиньте в&#160;<a href="#calc" style="color: {{accent}}">калькуляторе</a>, точнее посчитаем на&#160;созвоне.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ ЧТОБЫ НАЧАТЬ ═══════════ -->
-<section aria-labelledby="start-h" style="background: #F4F4F0">
-  <div style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 64px">
-    <h2 id="start-h" style="margin: 0; flex: 1 1 300px; font-size: clamp(32px, 4.4vw, 58px); font-weight: 600; line-height: 1; text-transform: uppercase">Чтобы начать работу, нужно:</h2>
-    <div style="flex: 999 1 520px; min-width: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px">
-      <div style="display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">От вас</p>
-        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.45">
-          <li>→ EIR и&#160;ТЗ заказчика</li>
-          <li>→ модель АР и&#160;график</li>
-          <li>→ ответственный за&#160;BIM</li>
-          <li>→ договор и&#160;оплата пилота</li>
-        </ul>
-      </div>
-      <div style="display: flex; flex-direction: column; gap: 12px">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: {{accent}}">От нас</p>
-        <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 16px; line-height: 1.45">
-          <li>→ разбор EIR за&#160;2 дня</li>
-          <li>→ договор и&#160;план пилота</li>
-          <li>→ шаблон и&#160;BEP за&#160;2 недели</li>
-        </ul>
-      </div>
-    </div>
-  </div>
+<section id="price" aria-labelledby="price-h" class="v3-sec v3-split">
+  <div class="v3-side"><div style="display: flex; align-items: flex-start; gap: 20px">
+      <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 0.62em"></span>
+      <h2 id="price-h" class="v3-h2">Стоимость</h2>
+    </div></div>
+  <p class="v3-big">Цену называем после разбора EIR, ТЗ и&#160;модели АР. Она складывается из&#160;шаблона, BEP, кнопок, пилота и&#160;ведения. Тиражируемые этажи бесплатно.</p>
 </section>
 
 <!-- ═══════════ FAQ ═══════════ -->
-<section id="faq" aria-labelledby="faq-h" style="max-width: 1200px; margin: 0 auto; padding: clamp(64px, 8vw, 110px) clamp(16px, 4vw, 48px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 64px">
+<section id="faq" aria-labelledby="faq-h" class="v3-sec v3-split">
   <div style="flex: 1 1 280px; min-width: 0; display: flex; flex-direction: column">
     <div style="display: flex; align-items: flex-start; gap: 20px">
     <span aria-hidden="true" style="flex: none; width: 56px; height: 1px; background: #1B1613; margin-top: 18px"></span>
@@ -599,6 +373,8 @@ html.fl-menu-open .fl-menu{display:flex}
     </sc-for>
   </div>
 </section>
+
+<div class="v3-fade-up" aria-hidden="true"></div>
 
 <!-- ═══════════ ФОРМА ═══════════ -->
 <section id="form" aria-labelledby="form-h" style="position: relative; overflow: hidden; background: #1B1613; color: #F4F4F0">
@@ -1118,8 +894,6 @@ class Component extends DCLogic {
       { q: 'Что такое «кнопка»?', a: 'Команда на вкладке Flow в Revit. Нажали, и ручная операция выполняется по правилам вашего проекта.' },
       { q: 'У нас свой EIR и свои стандарты. Подойдёт?', a: 'Да. Кнопки настраиваются под EIR проекта, поэтому начинаем с разбора вашего EIR.' },
       { q: 'Можно начать с малого?', a: 'Да, с пилота на одном корпусе или эталонном этаже. Пилот засчитывается в проект.' },
-      { q: 'Сколько занимает внедрение?', a: 'Разбор EIR, шаблон и BEP, кнопки и пилот, дальше ведение до сдачи. Точный график зависит от объекта.' },
-      { q: 'Как устроена лицензия?', a: 'Ключ выдаётся на проект.' },
       { q: 'Что с безопасностью наших моделей?', a: 'Модели остаются у вас: работаем на вашей модели или копии, которую вы передаёте сами. Кнопки не отправляют содержимое моделей в интернет, данные одного клиента не попадают к другому. При необходимости подпишем NDA.' },
       { q: 'Что если по кнопке появится вопрос?', a: 'Спросите прямо из Revit: кнопка «Вопрос» отправляет его автору, ответ приходит туда же в течение двух часов. Всё общение внутри плагина, не выходя из Revit.' }
     ];
