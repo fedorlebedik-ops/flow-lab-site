@@ -9,3 +9,7 @@ html.fl-scrolled .fl-nav{background:rgba(27,22,19,.94);-webkit-backdrop-filter:b
 @media (prefers-reduced-motion:reduce){.fl-nav,.fl-top{transition:none}}
 @media (min-width:561px){.cta-sticky{display:none!important}.fl-top{bottom:max(24px,calc(env(safe-area-inset-bottom,0px) + 24px))}}
 @media (max-width:1280px){.fl-links{display:none!important}.fl-nav .fl-menu-btn{display:inline-flex!important;align-items:center}}
+.fl-links a{position:relative}
+.fl-links a::after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:2px;border-radius:2px;background:#E8A06A;transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.fl-links a.fl-on,.fl-links a[aria-current="page"]{color:#F4F4F0;text-decoration:none!important}
+.fl-links a.fl-on::after,.fl-links a[aria-current="page"]::after{transform:scaleX(1)}
