@@ -205,7 +205,7 @@ html.fl-menu-open .fl-menu{display:flex}
 
   <nav class="fl-nav" aria-label="Главное меню">
     <a class="fl-logo" href="#top">Flow&#160;Lab</a>
-    <div class="fl-links"><a href="#buttons">Что автоматизируем</a><a href="/kak-rabotaem/">Как мы работаем</a><a href="#price">Стоимость</a><a href="#faq">Вопросы</a><a href="/kontakty/">Контакты</a></div>
+    <div class="fl-links"><a href="#buttons">Что автоматизируем</a><a href="/kak-rabotaem/">Как мы работаем</a><a href="#price">Стоимость</a><a href="#faq">Вопросы</a><a href="/kontakty/">Контакты</a><a href="/pro-proekt/">Про проект</a></div>
     <div class="fl-right"><a class="fl-call" href="#form">Записаться на&#160;созвон</a><button type="button" class="fl-menu-btn" data-fl-menu="open" aria-controls="fl-menu" aria-expanded="false">Меню</button></div>
   </nav>
 
@@ -478,7 +478,7 @@ html.fl-menu-open .fl-menu{display:flex}
 
 <div id="fl-menu" class="fl-menu" role="dialog" aria-modal="true" aria-label="Меню">
   <div class="fl-menu__top"><a class="fl-logo" href="#top" data-fl-menu="close">Flow&#160;Lab</a><button type="button" class="fl-menu-btn" style="display:inline-flex;align-items:center" data-fl-menu="close">Закрыть</button></div>
-  <div class="fl-menu__list"><a href="#buttons" data-fl-menu="close">Что автоматизируем</a><a href="/kak-rabotaem/" data-fl-menu="close">Как мы работаем</a><a href="#price" data-fl-menu="close">Стоимость</a><a href="#faq" data-fl-menu="close">Вопросы</a><a href="/kontakty/" data-fl-menu="close">Контакты</a></div>
+  <div class="fl-menu__list"><a href="#buttons" data-fl-menu="close">Что автоматизируем</a><a href="/kak-rabotaem/" data-fl-menu="close">Как мы работаем</a><a href="#price" data-fl-menu="close">Стоимость</a><a href="#faq" data-fl-menu="close">Вопросы</a><a href="/kontakty/" data-fl-menu="close">Контакты</a><a href="/pro-proekt/" data-fl-menu="close">Про проект</a></div>
   <a class="fl-call" href="#form" data-fl-menu="close">Записаться на&#160;созвон →</a>
   <p class="fl-menu__note">Telegram @F_Lebedik · +7&#160;950&#160;033-70-66</p>
 </div>
@@ -894,7 +894,6 @@ class Component extends DCLogic {
       { q: 'Что такое «кнопка»?', a: 'Команда на вкладке Flow в Revit. Нажали, и ручная операция выполняется по правилам вашего проекта.' },
       { q: 'У нас свой EIR и свои стандарты. Подойдёт?', a: 'Да. Кнопки настраиваются под EIR проекта, поэтому начинаем с разбора вашего EIR.' },
       { q: 'Можно начать с малого?', a: 'Да, с пилота на одном корпусе или эталонном этаже. Пилот засчитывается в проект.' },
-      { q: 'Что с безопасностью наших моделей?', a: 'Кнопки работают у вас в Revit, на вашем компьютере. Модель и данные проекта никуда не отправляются и в нейросети не загружаются. Наружу уходит только то, что вы сами отправите кнопкой «Вопрос»: текст и скриншот. ИИ помогает нам писать кнопки, а не читать ваш проект. Всё это закрепляем в договоре.' },
       { q: 'Что если по кнопке появится вопрос?', a: 'Спросите прямо из Revit: кнопка «Вопрос» отправляет его автору, ответ приходит туда же в течение двух часов. Всё общение внутри плагина, не выходя из Revit.' }
     ];
     const faq = FAQ.map((x, i) => ({ q: x.q, a: x.a, open: st.faqOpen === i, sign: st.faqOpen === i ? '−' : '+',

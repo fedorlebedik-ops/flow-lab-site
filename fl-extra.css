@@ -8,3 +8,4 @@ html.fl-scrolled .fl-nav{background:rgba(27,22,19,.94);-webkit-backdrop-filter:b
 @media (max-width:600px){.fl-top{bottom:max(76px,calc(env(safe-area-inset-bottom,0px) + 76px));right:16px;width:44px;height:44px}}
 @media (prefers-reduced-motion:reduce){.fl-nav,.fl-top{transition:none}}
 @media (min-width:561px){.cta-sticky{display:none!important}.fl-top{bottom:max(24px,calc(env(safe-area-inset-bottom,0px) + 24px))}}
+@media (max-width:1280px){.fl-links{display:none!important}.fl-nav .fl-menu-btn{display:inline-flex!important;align-items:center}}
