@@ -18,6 +18,11 @@
 <meta property="og:title" content="Flow Lab (Флоу Лаб) — лаборатория автоматизации Revit">
 <meta property="og:description" content="Рабочая документация в Revit на кнопках под EIR девелопера. Изучаем процесс команды, настраиваем кнопки под ваши правила, замеряем время до и после.">
 <meta property="og:url" content="https://flow-lab.pro/">
+<meta property="og:image" content="https://flow-lab.pro/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon-120.png" type="image/png" sizes="120x120">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&amp;family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&amp;display=swap">
 <style>
@@ -148,6 +153,9 @@ html.fl-menu-open .fl-menu{display:flex}
 @media (max-width:1100px){.fl-links{display:none}.fl-menu-btn{display:inline-flex;align-items:center}}
 @media (max-width:560px){.fl-nav .fl-call{display:none}}
 </style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Flow Lab", "alternateName": ["Флоу Лаб", "Flow Lab — лаборатория автоматизации Revit"], "url": "https://flow-lab.pro/", "logo": "https://flow-lab.pro/icon-512.png", "description": "Лаборатория автоматизации рабочей документации в Revit для архитектурных бюро: кнопки под EIR девелопера, шаблон, BEP, сопровождение до сдачи.", "telephone": "+7 950 033-70-66", "areaServed": "RU", "founder": {"@type": "Person", "name": "Фёдор Лебедик"}, "sameAs": ["https://t.me/Flow_lab_pro"]}</script>
+<link rel="stylesheet" href="/fl-extra.css">
+<script src="/fl-extra.js" defer></script>
 </head>
 <body>
 <div id="app"></div>
@@ -175,25 +183,10 @@ html.fl-menu-open .fl-menu{display:flex}
 
   <div id="top" style="position: relative; max-width: 1200px; margin: 0 auto; padding: clamp(48px, 9vw, 120px) clamp(16px, 4vw, 48px) clamp(64px, 10vw, 140px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-end">
     <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
-      <p style="margin: 0; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">[ лаборатория автоматизации Revit для архитектурных бюро ]</p>
-      <h1 style="margin: 0; font-weight: 600; font-size: clamp(34px, 6.6vw, 92px); line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase">Рабочая документация в&#160;Revit на&#160;кнопках</h1>
-      <p style="margin: 0; max-width: 640px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.22; color: #F1D9C4">Под EIR девелопера: модель проходит проверку заказчика, а&#160;команда занимается проектом, а&#160;не&#160;рутиной.</p>
-      <div style="display: flex; flex-wrap: wrap; gap: 10px 0; max-width: 680px; font-size: 14px; line-height: 1.4; color: rgba(244,244,240,0.9)">
-        <span style="flex: 1 1 100%; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">Лаборатория, а&#160;не&#160;коробка с&#160;плагином</span>
-        <span style="flex: 1 1 180px; padding: 12px 16px 12px 0; border-top: 1px solid rgba(244,244,240,0.22)"><b style="color: #E8A06A; font-weight: 600">01</b> Изучаем, как работает ваша команда и&#160;ваш EIR</span>
-        <span style="flex: 1 1 180px; padding: 12px 16px 12px 0; border-top: 1px solid rgba(244,244,240,0.22)"><b style="color: #E8A06A; font-weight: 600">02</b> Настраиваем кнопки под ваши правила</span>
-        <span style="flex: 1 1 180px; padding: 12px 16px 12px 0; border-top: 1px solid rgba(244,244,240,0.22)"><b style="color: #E8A06A; font-weight: 600">03</b> Замеряем время до&#160;и&#160;после</span>
-      </div>
-
-      <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 8px">
-        <p style="margin: 0; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(244,244,240,0.7)">Кто вы в бюро?</p>
-        <div role="group" aria-label="Выберите роль" style="display: flex; flex-wrap: wrap; gap: 10px">
-          <sc-for list="{{roles}}" as="r" hint-placeholder-count="3">
-            <button type="button" onClick="{{r.pick}}" aria-pressed="{{r.pressed}}" style="min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 1px solid {{r.heroBorder}}; background: {{r.heroBg}}; color: {{r.heroFg}}; font-size: 14px; font-weight: 500; cursor: pointer">{{r.label}}</button>
-          </sc-for>
-        </div>
-        <p style="margin: 0; max-width: 600px; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.86); min-height: 50px">{{roleLine}}</p>
-      </div>
+      <p style="margin: 0; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #E8A06A">[ лаборатория автоматизации рабочей документации в&#160;Revit ]</p>
+      <h1 style="margin: 0; font-weight: 600; font-size: clamp(34px, 6.6vw, 92px); line-height: 0.98; letter-spacing: 0.01em; text-transform: uppercase">Освободим команду от&#160;рутины в&#160;Revit</h1>
+      <p style="margin: 0; max-width: 640px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: clamp(22px, 2.6vw, 32px); line-height: 1.22; color: #F1D9C4">Настроим кнопки под EIR вашего проекта: модель проходит проверку заказчика, а&#160;люди занимаются архитектурой.</p>
+      <p style="margin: 0; max-width: 560px; font-size: 16px; line-height: 1.55; color: rgba(244,244,240,0.86)">Начнём с&#160;одного этажа, чтобы вы увидели результат на&#160;своей модели.</p>
 
       <div style="display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; margin-top: 4px">
         <a href="#form" style="display: inline-flex; align-items: center; gap: 12px; min-height: 56px; padding: 0 30px; border-radius: 999px; background: #E8A06A; color: #1B1613; text-decoration: none; font-weight: 600; font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase">Записаться на созвон <span aria-hidden="true">→</span></a>
@@ -201,16 +194,6 @@ html.fl-menu-open .fl-menu{display:flex}
       </div>
     </div>
 
-    <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
-      <p style="margin: 0 0 6px; font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 22px; color: #E8A06A">вручную → кнопкой</p>
-      <sc-for list="{{heroOps}}" as="o" hint-placeholder-count="3">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 16px 0; border-top: 1px solid rgba(244,244,240,0.22)">
-          <span style="font-size: 14px; line-height: 1.35; color: rgba(244,244,240,0.86)">{{o.short}}</span>
-          <span style="white-space: nowrap; font-size: 15px; font-weight: 500"><span style="color: rgba(244,244,240,0.6)">{{o.manualTxt}}</span> <span style="color: #E8A06A">→ {{o.btnTxt}}</span></span>
-        </div>
-      </sc-for>
-      <p style="margin: 2px 0 0; padding-top: 12px; border-top: 1px solid rgba(244,244,240,0.22); font-size: 12px; line-height: 1.4; color: rgba(244,244,240,0.6)">Оценка. Точнее замеряем на&#160;вашем объекте</p>
-    </div>
   </div>
 </header>
 
@@ -1137,8 +1120,8 @@ class Component extends DCLogic {
       { q: 'Можно начать с малого?', a: 'Да, с пилота на одном корпусе или эталонном этаже. Пилот засчитывается в проект.' },
       { q: 'Сколько занимает внедрение?', a: 'Разбор EIR, шаблон и BEP, кнопки и пилот, дальше ведение до сдачи. Точный график зависит от объекта.' },
       { q: 'Как устроена лицензия?', a: 'Ключ выдаётся на проект.' },
-      { q: 'Сколько это стоит?', a: 'Цену называем, когда получим исходные данные: EIR, ТЗ, модель АР, число корпусов и этажей. Тиражируемые этажи бесплатно. Оплата по этапам.' },
-      { q: 'Что нужно от нас для старта?', a: 'EIR и ТЗ заказчика, модель АР и график, ответственный за BIM с вашей стороны.' }
+      { q: 'Что с безопасностью наших моделей?', a: 'Модели остаются у вас: работаем на вашей модели или копии, которую вы передаёте сами. Кнопки не отправляют содержимое моделей в интернет, данные одного клиента не попадают к другому. При необходимости подпишем NDA.' },
+      { q: 'Что если по кнопке появится вопрос?', a: 'Спросите прямо из Revit: кнопка «Вопрос» отправляет его автору, ответ приходит туда же в течение двух часов. Всё общение внутри плагина, не выходя из Revit.' }
     ];
     const faq = FAQ.map((x, i) => ({ q: x.q, a: x.a, open: st.faqOpen === i, sign: st.faqOpen === i ? '−' : '+',
       toggle: () => self.setState({ faqOpen: self.state.faqOpen === i ? -1 : i }) }));
